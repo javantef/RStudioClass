@@ -31,3 +31,87 @@ m <-1
 ```
 # Problem 3
 Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
+
+```{r}
+
+```
+# Problem 4
+Find the sum of all the integer numbers from 1 to 100.
+
+* Use the sum() function on a vector of numbers
+* How would you do this without using the sum function? For example, how could you use a for loop to accomplish this task?
+
+```{r}
+
+```
+# Problem 5
+Write a function to find the sum of all integers between any two values.
+
+```{r}
+
+```
+# Problem 6
+List all of the odd numbers from 1 to 100.
+* Use the seq() function
+* How could you do this without using the seq() function? Consider using the mod function %%, which evaluates whether or not there is a remainder when dividing one number by another.
+```{r}
+
+```
+# Problem 7
+List all of the prime numbers from 1 to 1000.
+```{r}
+
+```
+# Problem 8
+Generate 100 random numbers:
+* Check out the runif function
+* To look at the help file run ?runif in the console. In general ?function_name will show the help file for any function in R.
+# Problem 7
+List all of the prime numbers from 1 to 1000.
+```{r}
+
+```
+# Problem 9
+Generate 100 random numbers within a specific range (runif can do this)
+```{r}
+
+```
+# Problem 10
+* Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: mean, mode, median, range, standard deviation (It’s ok to use sum() and length() be creative and see if you can find multiple solutions. Here is an example for two ways to compute the mean.)
+```{r}
+
+```
+# Problem 11
+Count the number of characters in a string variable (use strsplit() to split a character vector)
+```{r}
+
+```
+# Problem 12
+Count the number of words in a string variable (use strsplit)
+```{r}
+
+```
+# Problem 13
+Count the number of sentences in a string variable (consider splitting by the . character)
+
+```{r}
+
+```
+# Problem 14
+Count the number of times a specific character occurs in a string variable
+* Table() function can help count individual occurences
+* How would you do this without the table function?
+# Problem 12
+Count the number of words in a string variable (use strsplit)
+```{r}
+
+```
+# Problem 15
+Do a logical test to see if one word is found within the text of another string variable.
+* For example given the word hello, can you run a test to see if it is contained in the test sentence?
+
+
+```{r}
+
+```
+# Problem 16
