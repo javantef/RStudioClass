@@ -30,88 +30,263 @@ Put numbers into variables, do simple math on the variables
 m <-1
 ```
 # Problem 3
-Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
+A). Write code that will place the numbers 1 to 100 separately into a variable using for loop. 
 
 ```{r}
-
+a<-0
+for(i in 1:100){
+  a<-a + print(i)
+}
 ```
+B). Then, again using the seq function.
+```{r}
+seq(1,100)
+```
+
 # Problem 4
-Find the sum of all the integer numbers from 1 to 100.
+Find the sum of all the integer numbers from 1 to 100:
 
-* Use the sum() function on a vector of numbers
-* How would you do this without using the sum function? For example, how could you use a for loop to accomplish this task?
-
+A). Use the sum() function on a vector of numbers
 ```{r}
+b<-0
+for(i in 1:100){
+  b<- b+sum(i)
+}
 
 ```
+B). How would you do this without using the sum function? For example, how could you use a for loop to accomplish this task?
+```{r}
+e<-0
+for (i in 1:100){
+e<-e + i
+}
+
+```
+
 # Problem 5
 Write a function to find the sum of all integers between any two values.
 
 ```{r}
+SumFunction <- function (x) {
+  f<-0
+  for (i in x){
+    f<-f+i
+  }
+  return(f)
+}
 
+x<-1:100
+SumFunction(x)
 ```
 # Problem 6
-List all of the odd numbers from 1 to 100.
-* Use the seq() function
-* How could you do this without using the seq() function? Consider using the mod function %%, which evaluates whether or not there is a remainder when dividing one number by another.
+List all of the odd numbers from 1 to 100:
+A). Use the seq() function
+
 ```{r}
+seq(1,100, by=2)
 
 ```
+B). How could you do this without using the seq() function? Consider using the mod function %%, which evaluates whether or not there is a remainder when dividing one number by another.
+```{r}
+for(i in 1:100){
+  if (!i %%2)
+next
+print(i)
+}
+
+```
+
 # Problem 7
 List all of the prime numbers from 1 to 1000.
 ```{r}
+PrimeFunction<- function(x){
+    if(x==2){
+        print("TRUE")
+    } else {
+    if(x%%(2:(x-1))!=0){
+        print(seq(as.numeric("TRUE")))
+    } else { 
+        print("FALSE")
+    }}}
 
+PrimeFunction(x)
 ```
 # Problem 8
-Generate 100 random numbers:
-* Check out the runif function
-* To look at the help file run ?runif in the console. In general ?function_name will show the help file for any function in R.
-# Problem 7
-List all of the prime numbers from 1 to 1000.
-```{r}
+Generate 100 random numbers.
 
+```{r}
+h<-runif(100)
+
+h
 ```
 # Problem 9
 Generate 100 random numbers within a specific range (runif can do this)
 ```{r}
+j<-runif(100,1,200)
+
+j
 
 ```
 # Problem 10
-* Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: mean, mode, median, range, standard deviation (It’s ok to use sum() and length() be creative and see if you can find multiple solutions. Here is an example for two ways to compute the mean.)
+Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: 
+A). mean 
 ```{r}
+MeanFunction <- function(x){
+  k<-0
+  l<- 0
+  for(i in x){
+    k <- k+sum(i)
+    l<-l+length(x)
+  }
+  return(k/l)
+}
 
+MeanFunction(x)
+
+```
+B). mode 
+```{r}
+ModeFunction <- function(x){
+  m<-0
+  for(i in x){
+    m <- m+freq(x) }
+  return(m)
+}
+m
+```
+C). median 
+```{r}
+MedianFunction <- function(x){
+ n<-0
+ p<-0
+  for(i in x){
+    n<-n+seq(i)
+    p<-p+((length(x)+1)/2)
+    }
+ return(p)
+ }
+
+```
+D). range
+```{r}
+RangeFunction <- function(x){
+q<-0
+r<-0
+for(i in x){
+q <-q+min(x)
+r<-r+max(x)
+  }
+  return(r-q)
+}
+
+RangeFunction(x)
+
+```
+E). standard deviation
+```{r}
+StanDevFunction <- function(x){
+s<-0
+for(i in x){
+s <-s+sqrt(var(x))
+  }
+  return(s)
+}
+StanDevFunction(x)
 ```
 # Problem 11
 Count the number of characters in a string variable (use strsplit() to split a character vector)
 ```{r}
+z <- "dskjfenlrhelenhtrileriwtnhreut"
+
+t<- unlist(strsplit(z,split=""))
+length(t)
 
 ```
 # Problem 12
 Count the number of words in a string variable (use strsplit)
 ```{r}
+y<-"Count the number of words in a string variable use strsplit"
+
+u<- unlist(strsplit(y,split=" "))
+length(u)
 
 ```
 # Problem 13
 Count the number of sentences in a string variable (consider splitting by the . character)
 
 ```{r}
+x<-"Count the number of sentences in a string variable. Consider splitting by the period character."
+
+v<- unlist(strsplit(x,split="  "))
+length(v)
 
 ```
 # Problem 14
-Count the number of times a specific character occurs in a string variable
-* Table() function can help count individual occurences
-* How would you do this without the table function?
-# Problem 12
-Count the number of words in a string variable (use strsplit)
+Count the number of times a specific character occurs in a string variable:
+
+A). Table() function can help count individual occurences
+
+```{r}
+w<-c(2,2,3,5,6,7,8,8,8,9,0,8,6,7,5,7,6,3,6,3,4)
+ab<-table(w)
+as.data.frame(ab)
+```
+B). How would you do this without the table function?
+
 ```{r}
 
+w<-c(2,2,3,5,6,7,8,8,8,9,0,8,6,7,5,7,6,3,6,3,4)
+ab<-as.data.frame(w)
+ab
 ```
+
 # Problem 15
 Do a logical test to see if one word is found within the text of another string variable.
-* For example given the word hello, can you run a test to see if it is contained in the test sentence?
+
+```{r}
+bc<-"text"
+cd<-"Do a logical test to see if one word is found within the text of another string variable"
+
+bc%in%cd
+```
+# Problem 16
+Put the current computer time in milliseconds into a variable
+```{r}
+
+```
+# Problem 17
+Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+
+```{r}
+
+```
+# Problem 18
+Read a .txt file or .csv file into a variable
+A). scan() is a general purpose text input function
+
+```{r}
+
+```
+B). read.csv() will read .csv files
+
+```{r}
+
+```
+
+# Problem 19
+Output the contents of a variable to a .txt file
+*write.csv()
+```{r}
+
+```
+# Problem 20
+Create a variable that stores a 20x20 matrix of random numbers
+* here’s how you make a matrix full of 0s
 
 
 ```{r}
 
 ```
-# Problem 16
+# Problem 21
+Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
+* write.csv()
