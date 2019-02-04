@@ -109,7 +109,7 @@ PrimeFunction<- function(x){
         print("FALSE")
     }}}
 
-PrimeFunction(x)
+
 ```
 # Problem 8
 Generate 100 random numbers.
@@ -252,41 +252,53 @@ bc%in%cd
 # Problem 16
 Put the current computer time in milliseconds into a variable
 ```{r}
-
+print(as.numeric(Sys.time())*1000, digits=15)
 ```
 # Problem 17
 Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
 
+Before
 ```{r}
+Bb<-print(as.numeric(Sys.time())*1000, digits=15)
+```
+After
+```{r}
+Aa<-print(as.numeric(Sys.time())*1000, digits=15)
+```
+Difference
+```{r}
+AaBb<-Aa-Bb
 
+AaBb
 ```
 # Problem 18
-Read a .txt file or .csv file into a variable
-A). scan() is a general purpose text input function
+Read a .txt file or .csv file into a variable. Scan() is a general purpose text input function. read.csv() will read .csv files.
 
 ```{r}
-
-```
-B). read.csv() will read .csv files
-
-```{r}
-
+read.csv("RandomRead.csv",header = TRUE,sep = ",")
 ```
 
 # Problem 19
 Output the contents of a variable to a .txt file
-*write.csv()
 ```{r}
-
+ds <- c(2,8,6,4,0,1,4,7)
+hi<-write.csv(ds, file = "RandomRead.csv")
+hi
 ```
 # Problem 20
 Create a variable that stores a 20x20 matrix of random numbers
-* here’s how you make a matrix full of 0s
-
 
 ```{r}
+ef<-runif(400)
+
+fg<-matrix(ef,nrow = 20,ncol = 20)
+
+fg
 
 ```
 # Problem 21
 Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
-* write.csv()
+```{r,eval=FALSE}
+ij<-write.csv(ef,file = "RandomRead.csv", sep="\t", row.names = TRUE, col.names = NA)
+ij
+```
