@@ -49,7 +49,7 @@ Data Creation
 
 ```
 ### Slicing and extracting data
-indexing vectors
+Indexing vectors
 
 1.	x[n] nth element
 2.	x[-n] all but nth element
@@ -61,7 +61,7 @@ indexing vectors
 8.	x[x > 3 & x < 5] all elements between 3 and 5
 9.	x[x %in% c(“a”,“and”,“the”)] all elements in given set
 
-Indexing lists
+### Indexing lists
 1.	x[n] list with elements n
 2.	x[[n]] nt h element of the list
 3.	x[[“name”]] element of the list named “name”
