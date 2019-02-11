@@ -11,7 +11,7 @@
 
 
 
-<title>README.utf8.md</title>
+<title>Dictionary</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -264,6 +267,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -302,54 +400,76 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Dictionary</h1>
 
 </div>
 
 
-<div id="labjournalwebsite" class="section level1">
-<h1>LabJournalWebsite</h1>
-<p>An R Markdown website template for a lab journal <a href="https://crumplab.github.io/LabJournalWebsite/index.html">https://crumplab.github.io/LabJournalWebsite/index.html</a></p>
-<p>To use this, click the download as .zip button to start from a local computer, or skip down to the github example to fork this and get started that way.</p>
-<p>The unzipped folder contains all of the files you need to compile a website in R Markdown. This should all work fine if you have the latest version of R and R-studio installed.</p>
-<div id="steps-for-compiling-on-your-local-computer" class="section level2">
-<h2>Steps for compiling on your local computer</h2>
+<div id="list-of-functions" class="section level3">
+<h3>List of functions</h3>
+<p>General bits</p>
 <ol style="list-style-type: decimal">
-<li>Make sure R and R-studio are installed</li>
-<li>Make sure the rmarkdown package is installed in R-studio. Open R-studio, click the packages tab in the lower left hand corner, click install packages, type in rmarkdown, make sure “install dependencies” is clicked on, then press install. Close R-studio.</li>
-<li>Navigate to the folder you just downloaded, open the ‘LabJournalWebsite.Proj’ file. This should automatically open R-studio, and your current working environment will be inside this project. That means everything you save will be auto saved to this folder (unless you tell R-studio to save something somewhere else.</li>
-<li>Inside R-studio you should see a files tab in the bottom right hand corner. Most files you click will be opened up as text files in the R-studio editor. Click the “Index.Rmd” file.</li>
-<li>To compile the entire website, find the build tab in the top right hand corner. You should see the option to “build website”. Click this. The website should be built.</li>
-<li>After the website is built, you should be able to see it in the R-studio browser. There is a little button (blue arrow with a little browser icon) that allows you to pop the website into your default web-browser. This way you can look at the website in your browser.</li>
-</ol>
-<p>Important: After compilation, all of the files for displaying your website are saved in the folder where your R project resides. When you look at these in a browser (for example, by going to the folder and dragging the index.html file into a browser), you are loading from your disk. Only you will be able to see the website, because it is on your hard-drive. You need to upload to a web server to serve the webpage on the internet.</p>
-</div>
-<div id="steps-for-serving-your-webpage-using-github-pages." class="section level2">
-<h2>Steps for serving your webpage using github pages.</h2>
-<p>This is the source code repository for making the webpage in R-studio. At the same time, the resulting website is being served from this repository at this link <a href="https://crumplab.github.io/LabJournalWebsite/index.html">https://crumplab.github.io/LabJournalWebsite/index.html</a>.</p>
-<p>Every github repository has the capability of serving html files (web page files) contained in the repository, this is called github pages. How this works depends a little bit on the specific repository you are using. For this repository. The webpage is served from the docs folder. The example files are set so that when you compile the example in R-studio, the output automatically goes into the docs folder. As a result, when you have these files in a github repository, github will serve the html files in your docs folder as a website.</p>
-<p><strong>Steps</strong></p>
-<ol style="list-style-type: decimal">
-<li>For this repo to your github (press the fork button in top right hand corner, then choose your github account)</li>
-<li>You should now see a copy of this repo in your github account</li>
-<li>Click the Settings (also near top right), scroll down to Github Pages options</li>
-<li>click the optino to serve from docs folder</li>
-<li>You should see a little green message above the github pages options with a link to your new webpage.</li>
-</ol>
-<p><strong>Editing webpage and serving on github</strong></p>
-<ol style="list-style-type: decimal">
-<li>download <a href="https://desktop.github.com">github desktop</a></li>
-<li>make sure it is connected to your account</li>
-<li>clone the website repo to your local computer</li>
-<li>Open up the project file in the folder for your repo on your local computer (.rproj file)</li>
-<li>Edit the .rmd files in R-studio</li>
-<li>Recompile website (build website when index.rmd is loaded), or knit individual .rmd files</li>
-<li>send your changes back to the online github repository (note this can be done in github desktop, or directly in R-studio, in R-studio you will see a git tab if you are working in a git repo. Click the git tab, click the diff button, which will show you if there are any new changes. Click each of the files that you want to commit. Write a short note to describe the changes. Press the commit button. Wait a couple seconds, your changes should now be served on your website).</li>
+<li>help(topic) – search r studio for tips on a function for topic by clicking “Help” on the bottom right panel and performing a search under “Topic”; similar to “?topic”.</li>
+<li>?topic - search r studio for tips on a function for topic by typing “?[insert topic name here]” in the Console; similar to “help(topic)”.</li>
+<li>ls() – shows a list of characters used by the user.</li>
+<li>dir() – shows a list of files; see list.files().</li>
+<li>list.files() – shows a list of files; dir(). Input and output</li>
+<li>save() – saves a data.</li>
+<li>load() – loads data that was previously saved using “save()”.</li>
+<li>data() – loads data.</li>
+<li>library() – downloads packages unto r studio.</li>
+<li>read.table() – turns data from a file into a table.</li>
+<li>read.csv() – turns data from a csv into a table.</li>
+<li>scan() – turns data from a file into a list.</li>
+<li>print() – returns argument.</li>
+<li>cat() – turns data into a string and concatenates them, before returning them to the argument.</li>
+<li>write.table() – turns data into a matrix before returning it to argument and turning it into a file. Data Creation</li>
+<li>c() – concatenates variables into a vector.</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10) – to include numbers “from” to “to” (e.g. to include numbers 1 to 10).</li>
+<li>seq() – a sequence of number “from” one number “to” another.</li>
+<li>rep() – repeats a value.</li>
+<li>data.frame() – a matrix</li>
+<li>list() – holds list of variables.</li>
+<li>matrix() – a dataframe.</li>
+<li>factor() – categorizes a vector as a factor.</li>
+<li>rbind() – concatenates vectors into a row in a dataframe.</li>
+<li>cbind() – concatenates vectors into column in a dataframe.</li>
 </ol>
 </div>
+<div id="slicing-and-extracting-data" class="section level3">
+<h3>Slicing and extracting data</h3>
+<p>indexing vectors</p>
+<ol style="list-style-type: decimal">
+<li>x[n] nth element</li>
+<li>x[-n] all but nth element</li>
+<li>x[1:n] first n elements</li>
+<li>x[-(1:n)] elements from n+1 to the end</li>
+<li>x[c(1,4,2)] specific elements</li>
+<li>x[“name”] elements named “name”</li>
+<li>x[x&gt;3] all elements greater than 3</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set</li>
+</ol>
+<p>Indexing lists 1. x[n] list with elements n 2. x[[n]] nt h element of the list 3. x[[“name”]] element of the list named “name” 4. x$name id.</p>
+<p>Indexing matrices 1. x[i,j] element at row i, column j 2. x[i,] row i 3. x[,j] column j 4. x[,c(1,3)] columns 1 and 3 5. x[“name”,] row named “name”</p>
+<p>Indexing data frames (matrix indexing plus the following) 1. x[[“name”]] column named “name” 2. x$nameid.</p>
+<p>Variable conversion 1. as.data.frame(x) 2. as.numeric(x) 3. as.logical(x) 4. as.character(x)</p>
+<p>Variable information 1. is.na(x) 2. is.null(x) 3. is.data.frame(x) 4. is.numeric(x) 5. is.character(x) 6. length(x) 7. dim(x) 8. dimnames(x) 9. nrow(x) 10. ncol(x) 11. class() 12. attributes()</p>
+<p>Data selection and manipulation 1. which.max() 2. which.min() 3. which() 4. sort() 5. unique() 6. table() 7. sample()</p>
+<p>Math 1. max() 2. min() 3. range() 4. sum() 5. mean() 6. median() 7. var() 8. sd() 9. cor() 10. round() 11. abs()</p>
+<p>Matrices 1. t() 2. diag() 3. rowSums() 4. colSums() 5. rowMeans() 6. colMeans()</p>
+<p>Advanced Data processing 1. apply() 2. aggregate()</p>
+<p>Strings 1. paste() 2. strsplit() 3. tolower() 4. toupper</p>
+<p>Plotting 1. hist() 2. plot()</p>
+<p>Distributions 1. rnorm() 2. runif()</p>
+<p>Programming 1. show that you can define a function 2. show that you can write a for loop 3. show that you can write a while loop 4. show that you can write an if else statement 5. Explain what return() does inside a function, show you can use it 6. Explain what break() does, show you can use it</p>
+<p>Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again. 1. ggplot2 2. dplyr 3. shiny 4. data.table 5. reshape2 6. stringr</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
