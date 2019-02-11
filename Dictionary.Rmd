@@ -60,31 +60,41 @@ Indexing vectors
 7.	x[x>3] all elements greater than 3
 8.	x[x > 3 & x < 5] all elements between 3 and 5
 9.	x[x %in% c(“a”,“and”,“the”)] all elements in given set
+```{r}
 
+```
 ### Indexing lists
 1.	x[n] list with elements n
 2.	x[[n]] nt h element of the list
 3.	x[[“name”]] element of the list named “name”
 4.	x$name id.
+```{r}
 
-Indexing matrices
+```
+### Indexing matrices
 1.	x[i,j] element at row i, column j
 2.	x[i,] row i
 3.	x[,j] column j
 4.	x[,c(1,3)] columns 1 and 3
 5.	x[“name”,] row named “name”
+```{r}
 
-Indexing data frames (matrix indexing plus the following)
+```
+### Indexing data frames (matrix indexing plus the following)
 1.	x[[“name”]] column named “name”
 2.	x$nameid.
+```{r}
 
-Variable conversion
+```
+### Variable conversion
 1.	as.data.frame(x)
 2.	as.numeric(x)
 3.	as.logical(x)
 4.	as.character(x)
+```{r}
 
-Variable information
+```
+### Variable information
 1.	is.na(x)
 2.	is.null(x)
 3.	is.data.frame(x)
@@ -98,7 +108,10 @@ Variable information
 11.	class()
 12.	attributes()
 
-Data selection and manipulation
+```{r}
+
+```
+### Data selection and manipulation
 1.	which.max()
 2.	which.min()
 3.	which()
@@ -107,7 +120,10 @@ Data selection and manipulation
 6.	table()
 7.	sample()
 
-Math
+```{r}
+
+```
+### Math
 1.	max()
 2.	min()
 3.	range()
@@ -120,7 +136,10 @@ Math
 10.	round()
 11.	abs()
 
-Matrices
+```{r}
+
+```
+### Matrices
 1.	t()
 2.	diag()
 3.	rowSums()
@@ -128,25 +147,40 @@ Matrices
 5.	rowMeans()
 6.	colMeans()
 
-Advanced Data processing
+```{r}
+
+```
+### Advanced Data processing
 1.	apply()
 2.	aggregate()
 
-Strings
+```{r}
+
+```
+### Strings
 1.	paste()
 2.	strsplit()
 3.	tolower()
 4.	toupper
 
-Plotting
+```{r}
+
+```
+### Plotting
 1.	hist()
 2.	plot()
 
-Distributions
+```{r}
+
+```
+### Distributions
 1.	rnorm()
 2.	runif()
 
-Programming
+```{r}
+
+```
+### Programming
 1.	show that you can define a function
 2.	show that you can write a for loop
 3.	show that you can write a while loop
@@ -154,7 +188,10 @@ Programming
 5.	Explain what return() does inside a function, show you can use it
 6.	Explain what break() does, show you can use it
 
-Installing some packages
+```{r}
+
+```
+### Installing some packages
 Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.
 1.	ggplot2
 2.	dplyr
