@@ -405,8 +405,8 @@ div.tocify {
 </div>
 
 
-<div id="problem-1" class="section level3">
-<h3>Problem 1</h3>
+<div id="problem-1" class="section level1">
+<h1>Problem 1</h1>
 <p>Do simple math with numbers, addition, subtraction, multiplication, division</p>
 <pre class="r"><code>1+1</code></pre>
 <pre><code>## [1] 2</code></pre>
@@ -634,15 +634,16 @@ print(i)
 <div id="problem-7" class="section level1">
 <h1>Problem 7</h1>
 <p>List all of the prime numbers from 1 to 1000.</p>
-<pre class="r"><code>PrimeFunction&lt;- function(x){
-    if(x==2){
-        print(&quot;TRUE&quot;)
-    } else {
-    if(x%%(2:(x-1))!=0){
-        print(seq(as.numeric(&quot;TRUE&quot;)))
-    } else { 
-        print(&quot;FALSE&quot;)
-    }}}</code></pre>
+<pre class="r"><code>PrimeFunction&lt;-function (n){
+
+for(i in 2:(n-1)) {
+if ((n %% i) == 0) {
+  print(&#39;NOT Prime Number&#39;)
+} else print(&#39;YES Prime Number&#39;)
+return (n)
+
+}
+}</code></pre>
 </div>
 <div id="problem-8" class="section level1">
 <h1>Problem 8</h1>
