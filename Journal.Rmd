@@ -99,15 +99,17 @@ print(i)
 # Problem 7
 List all of the prime numbers from 1 to 1000.
 ```{r}
-PrimeFunction<- function(x){
-    if(x==2){
-        print("TRUE")
-    } else {
-    if(x%%(2:(x-1))!=0){
-        print(seq(as.numeric("TRUE")))
-    } else { 
-        print("FALSE")
-    }}}
+PrimeFunction<-function (n){
+
+for(i in 2:(n-1)) {
+if ((n %% i) == 0) {
+  print('NOT Prime Number')
+} else print('YES Prime Number')
+return (n)
+
+}
+}
+
 
 
 ```
