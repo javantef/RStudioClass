@@ -973,6 +973,331 @@ fg</code></pre>
 <pre class="r"><code>ij&lt;-write.csv(ef,file = &quot;RandomRead.csv&quot;, sep=&quot;\t&quot;, row.names = TRUE, col.names = NA)
 ij</code></pre>
 </div>
+<div id="harder-problems" class="section level1">
+<h1>HARDER PROBLEMS</h1>
+</div>
+<div id="problem-1-1" class="section level1">
+<h1>Problem 1</h1>
+<p>The FizzBuzz Problem List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number.</p>
+<pre class="r"><code>a&lt;-c(1:100)
+
+z&lt;-seq(3,100, by=3)
+a[z]&lt;-&#39;FIZZ&#39;
+
+y&lt;-seq(5,100, by=5)
+a[y]&lt;-&#39;BUZZ&#39;
+
+x&lt;-seq(15,100, by=15)
+a[x]&lt;-&#39;FIZZBUZZ&#39;
+
+a</code></pre>
+<pre><code>##   [1] &quot;1&quot;        &quot;2&quot;        &quot;FIZZ&quot;     &quot;4&quot;        &quot;BUZZ&quot;     &quot;FIZZ&quot;    
+##   [7] &quot;7&quot;        &quot;8&quot;        &quot;FIZZ&quot;     &quot;BUZZ&quot;     &quot;11&quot;       &quot;FIZZ&quot;    
+##  [13] &quot;13&quot;       &quot;14&quot;       &quot;FIZZBUZZ&quot; &quot;16&quot;       &quot;17&quot;       &quot;FIZZ&quot;    
+##  [19] &quot;19&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;     &quot;22&quot;       &quot;23&quot;       &quot;FIZZ&quot;    
+##  [25] &quot;BUZZ&quot;     &quot;26&quot;       &quot;FIZZ&quot;     &quot;28&quot;       &quot;29&quot;       &quot;FIZZBUZZ&quot;
+##  [31] &quot;31&quot;       &quot;32&quot;       &quot;FIZZ&quot;     &quot;34&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;    
+##  [37] &quot;37&quot;       &quot;38&quot;       &quot;FIZZ&quot;     &quot;BUZZ&quot;     &quot;41&quot;       &quot;FIZZ&quot;    
+##  [43] &quot;43&quot;       &quot;44&quot;       &quot;FIZZBUZZ&quot; &quot;46&quot;       &quot;47&quot;       &quot;FIZZ&quot;    
+##  [49] &quot;49&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;     &quot;52&quot;       &quot;53&quot;       &quot;FIZZ&quot;    
+##  [55] &quot;BUZZ&quot;     &quot;56&quot;       &quot;FIZZ&quot;     &quot;58&quot;       &quot;59&quot;       &quot;FIZZBUZZ&quot;
+##  [61] &quot;61&quot;       &quot;62&quot;       &quot;FIZZ&quot;     &quot;64&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;    
+##  [67] &quot;67&quot;       &quot;68&quot;       &quot;FIZZ&quot;     &quot;BUZZ&quot;     &quot;71&quot;       &quot;FIZZ&quot;    
+##  [73] &quot;73&quot;       &quot;74&quot;       &quot;FIZZBUZZ&quot; &quot;76&quot;       &quot;77&quot;       &quot;FIZZ&quot;    
+##  [79] &quot;79&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;     &quot;82&quot;       &quot;83&quot;       &quot;FIZZ&quot;    
+##  [85] &quot;BUZZ&quot;     &quot;86&quot;       &quot;FIZZ&quot;     &quot;88&quot;       &quot;89&quot;       &quot;FIZZBUZZ&quot;
+##  [91] &quot;91&quot;       &quot;92&quot;       &quot;FIZZ&quot;     &quot;94&quot;       &quot;BUZZ&quot;     &quot;FIZZ&quot;    
+##  [97] &quot;97&quot;       &quot;98&quot;       &quot;FIZZ&quot;     &quot;BUZZ&quot;</code></pre>
+</div>
+<div id="problem-2-1" class="section level1">
+<h1>Problem 2</h1>
+<p>A). Frequency Counts Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
+<pre class="r"><code>y&lt;-&quot;Frequency Counts&quot;
+
+table(unlist(strsplit(y,split=&quot;&quot;)))</code></pre>
+<pre><code>## 
+##   c C e F n o q r s t u y 
+## 1 1 1 2 1 2 1 1 1 1 1 2 1</code></pre>
+<p>B).Can you do this without using table? Attempt this problem using data.frame</p>
+<pre class="r"><code>y&lt;-c(&#39;F&#39;,&#39;r&#39;,&#39;e&#39;,&#39;q&#39;,&#39;u&#39;,&#39;e&#39;,&#39;n&#39;,&#39;c&#39;,&#39;y&#39;,&#39;C&#39;,&#39;o&#39;,&#39;u&#39;,&#39;n&#39;,&#39;t&#39;,&#39;s&#39;)
+
+x&lt;-c(1:15)
+
+FCD&lt;-data.frame(x,y)
+
+FCD</code></pre>
+<pre><code>##     x y
+## 1   1 F
+## 2   2 r
+## 3   3 e
+## 4   4 q
+## 5   5 u
+## 6   6 e
+## 7   7 n
+## 8   8 c
+## 9   9 y
+## 10 10 C
+## 11 11 o
+## 12 12 u
+## 13 13 n
+## 14 14 t
+## 15 15 s</code></pre>
+</div>
+<div id="problem-3-1" class="section level1">
+<h1>Problem 3</h1>
+<p>Test the Random Number Generator Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
+<pre class="r"><code>b&lt;-runif(1000000,min=0, max=100)
+hist(b)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-35-1.png" width="672" /> # Problem 4 Create a Multiplication Table Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
+<pre class="r"><code>for(i in 1:10){
+  for(t in 1:10){
+    w&lt;-print(i*t)
+  }
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10
+## [1] 12
+## [1] 14
+## [1] 16
+## [1] 18
+## [1] 20
+## [1] 3
+## [1] 6
+## [1] 9
+## [1] 12
+## [1] 15
+## [1] 18
+## [1] 21
+## [1] 24
+## [1] 27
+## [1] 30
+## [1] 4
+## [1] 8
+## [1] 12
+## [1] 16
+## [1] 20
+## [1] 24
+## [1] 28
+## [1] 32
+## [1] 36
+## [1] 40
+## [1] 5
+## [1] 10
+## [1] 15
+## [1] 20
+## [1] 25
+## [1] 30
+## [1] 35
+## [1] 40
+## [1] 45
+## [1] 50
+## [1] 6
+## [1] 12
+## [1] 18
+## [1] 24
+## [1] 30
+## [1] 36
+## [1] 42
+## [1] 48
+## [1] 54
+## [1] 60
+## [1] 7
+## [1] 14
+## [1] 21
+## [1] 28
+## [1] 35
+## [1] 42
+## [1] 49
+## [1] 56
+## [1] 63
+## [1] 70
+## [1] 8
+## [1] 16
+## [1] 24
+## [1] 32
+## [1] 40
+## [1] 48
+## [1] 56
+## [1] 64
+## [1] 72
+## [1] 80
+## [1] 9
+## [1] 18
+## [1] 27
+## [1] 36
+## [1] 45
+## [1] 54
+## [1] 63
+## [1] 72
+## [1] 81
+## [1] 90
+## [1] 10
+## [1] 20
+## [1] 30
+## [1] 40
+## [1] 50
+## [1] 60
+## [1] 70
+## [1] 80
+## [1] 90
+## [1] 100</code></pre>
+<pre class="r"><code>matrix(w,nrow = 10,ncol = 10)</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]  100  100  100  100  100  100  100  100  100   100
+##  [2,]  100  100  100  100  100  100  100  100  100   100
+##  [3,]  100  100  100  100  100  100  100  100  100   100
+##  [4,]  100  100  100  100  100  100  100  100  100   100
+##  [5,]  100  100  100  100  100  100  100  100  100   100
+##  [6,]  100  100  100  100  100  100  100  100  100   100
+##  [7,]  100  100  100  100  100  100  100  100  100   100
+##  [8,]  100  100  100  100  100  100  100  100  100   100
+##  [9,]  100  100  100  100  100  100  100  100  100   100
+## [10,]  100  100  100  100  100  100  100  100  100   100</code></pre>
+</div>
+<div id="problem-5-1" class="section level1">
+<h1>Problem 5</h1>
+<p>Encrypt and Decrypt the Alphabet Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.</p>
+<pre class="r"><code>b&lt;- c(&#39;E&#39;,&#39;n&#39;,&#39;c&#39;,&#39;r&#39;,&#39;y&#39;,&#39;p&#39;,&#39;t&#39;, &#39;D&#39;,&#39;e&#39;,&#39;c&#39;,&#39;r&#39;,&#39;y&#39;,&#39;p&#39;,&#39;t&#39;,&#39;A&#39;,&#39;l&#39;,&#39;p&#39;,&#39;h&#39;,&#39;a&#39;,&#39;b&#39;,&#39;e&#39;,&#39;t&#39;)
+b &lt;- as.factor(b)
+levels(b)</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;A&quot; &quot;b&quot; &quot;c&quot; &quot;D&quot; &quot;e&quot; &quot;E&quot; &quot;h&quot; &quot;l&quot; &quot;n&quot; &quot;p&quot; &quot;r&quot; &quot;t&quot; &quot;y&quot;</code></pre>
+<pre class="r"><code>k&lt;-b
+levels(k)</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;A&quot; &quot;b&quot; &quot;c&quot; &quot;D&quot; &quot;e&quot; &quot;E&quot; &quot;h&quot; &quot;l&quot; &quot;n&quot; &quot;p&quot; &quot;r&quot; &quot;t&quot; &quot;y&quot;</code></pre>
+<pre class="r"><code>k</code></pre>
+<pre><code>##  [1] E n c r y p t D e c r y p t A l p h a b e t
+## Levels: a A b c D e E h l n p r t y</code></pre>
+</div>
+<div id="problem-6-1" class="section level1">
+<h1>Problem 6</h1>
+<p>Snakes and Ladders A). Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.</p>
+<pre class="r"><code>### Simulation of one played game
+
+m&lt;-0
+n&lt;-0
+while(m&lt;25){
+  n&lt;-n+1
+  m&lt;-m+sample(c(1:6),1)
+}
+n</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code># A loop simulation of 1000 games and estimation of average number of dice rolls needed to successfully complete game
+
+m&lt;-0
+n&lt;-0
+for(i in 1:1000)
+while(m&lt;25){
+  n&lt;-n+1
+  m&lt;-m+sample(c(1:6),1)
+}
+z[i]&lt;-n
+mean(n)</code></pre>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="problem-7-1" class="section level1">
+<h1>Problem 7</h1>
+<p>Dice-rolling simulations. Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.</p>
+<pre class="r"><code>r&lt;-0
+q&lt;-0
+s&lt;-0
+for(i in 1:1000)
+while(r&lt;25){
+  q&lt;-q+1
+  r&lt;-r+sample(c(2:12),1)
+s[i]&lt;-q
+}
+q</code></pre>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="problem-8-1" class="section level1">
+<h1>Problem 8</h1>
+<p>Monte Hall problem. The monte-hall problem is as follows. A contestant in a game show is presented with three closed doors. They are told that a prize is behind one door, and two goats are behind the other two doors. They are asked to choose which door contains the prize. After making their choice the game show host opens one of the remaining two doors (not chosen by the contestant), and reveals a goat. There are now two door remaining. The contestant is asked if they would like to switch their choice to the other door, or keep their initial choice. The correct answer is that the participant should switch their initial choice, and choose the other door. This will increase their odds of winning. Demonstrate by monte-carlo simulation that the odds of winning is higher if the participant switches than if the participants keeps their original choice.</p>
+<pre class="r"><code>h&lt;-0
+g&lt;-0
+y&lt;-0
+for(i in 1:1000)
+  while(h&lt;25){
+  g&lt;-g+1
+  h&lt;-h+sample(c(1:10),1)
+y[i]&lt;-g
+}
+g</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="problem-9-1" class="section level1">
+<h1>Problem 9</h1>
+<p>100 doors problem. Problem: You have 100 doors in a row that are all initially closed. You make 100 passes by the doors. The first time through, you visit every door and toggle the door (if the door is closed, you open it; if it is open, you close it). The second time you only visit every 2nd door (door 2, 4, 6, etc.). The third time, every 3rd door (door 3, 6, 9, etc.), etc, until you only visit the 100th door.</p>
+<pre class="r"><code>z&lt;-0
+p&lt;-0
+d&lt;-0
+for(i in 1:100)
+  while(z&lt;100){
+  p&lt;-p+1
+  z&lt;-z+sample(c(1:100),1)
+  d[i]&lt;-p
+}
+p</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="problem-10-1" class="section level1">
+<h1>Problem 10</h1>
+<p>99 Bottles of Beer Problem In this puzzle, write code to print out the entire “99 bottles of beer on the wall”&quot; song. For those who do not know the song, the lyrics follow this form: X bottles of beer on the wall X bottles of beer Take one down, pass it around X-1 bottles of beer on the wall</p>
+<p>Where X and X-1 are replaced by numbers of course, from 99 all the way down to 0.</p>
+<pre class="r"><code>v&lt;-0
+x&lt;-0
+s&lt;-0
+for(i in 0:99)
+  while(v&lt;100){
+x&lt;-x+1
+v&lt;-v+x-1
+ s&lt;-print(x+v)
+  }</code></pre>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 6
+## [1] 10
+## [1] 15
+## [1] 21
+## [1] 28
+## [1] 36
+## [1] 45
+## [1] 55
+## [1] 66
+## [1] 78
+## [1] 91
+## [1] 105
+## [1] 120</code></pre>
+<pre class="r"><code>s</code></pre>
+<pre><code>## [1] 120</code></pre>
+</div>
+<div id="problem-11-1" class="section level1">
+<h1>Problem 11</h1>
+<p>Random Tic-Tac-Toe Imagine that two players make completely random choices when playing tic-tac-toe. Each game will either end in a draw or one of the two players will win. Create a monte-carlo simulation of this “random” version of tic-tac-toe. Out 10,000 simulations, what proportion of the time is the game won versus drawn?</p>
+<pre class="r"><code>uk&lt;-0
+ty&lt;-0
+k&lt;-0
+for(i in 1:10000)
+  while(uk&lt;25){
+  ty&lt;-ty+1
+  uk&lt;-uk+sample(c(1:10000),1)
+k[i]&lt;-ty
+}
+ty</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
 
 
 
