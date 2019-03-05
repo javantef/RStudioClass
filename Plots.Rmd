@@ -15,8 +15,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, messages=TRUE, error=TRUE)
 ```
 
-## Problem 1
-#Calcutt, S. E., Proctor, D., & Berman, S. M. (2019). Chimpanzees (Pan troglodytes) Are More Averse to Social Than Nonsocial Risk. Psychological Science, 30, 105-115.
+# Problem 1
+###Calcutt, S. E., Proctor, D., & Berman, S. M. (2019). Chimpanzees (Pan troglodytes) Are More Averse to Social Than Nonsocial Risk. Psychological Science, 30, 105-115.
 
 
 ```{r}
@@ -32,8 +32,8 @@ ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line(
 
 ```
 
-## Problem 2
-# Cao, J., Kleiman-Weiner, M., & Banaji, M. R. (2019). People Make the Same Bayesian Judgment They Criticize in Others. Psychological Science, 30, 20-31.nm
+#Problem 2
+###Cao, J., Kleiman-Weiner, M., & Banaji, M. R. (2019). People Make the Same Bayesian Judgment They Criticize in Others. Psychological Science, 30, 20-31.nm
 
 
 ```{r,eval=FALSE}
@@ -47,7 +47,7 @@ ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
   geom_point()+geom_smooth(method=lm)
 ```
 
-##Problem 3
+###Problem 3
 ```{r,eval=FALSE}
 #Create a dataframe
 
@@ -81,7 +81,7 @@ ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
 
 ```
 
-##Problem 4
+###Problem 4
 
 ```{r,eval=FALSE}
 #Create a dataframe
