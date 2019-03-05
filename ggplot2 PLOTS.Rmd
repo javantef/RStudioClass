@@ -18,13 +18,13 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 #Calcutt, S. E., Proctor, D., & Berman, S. M. (2019). Chimpanzees (Pan troglodytes) Are More Averse to Social Than Nonsocial Risk. Psychological Science, 30, 105-115.
 
 
-```{r}
+```{r,eval=FALSE}
 #Dataframe
 Names<-rep(c("Dara","Rita","Liza","Azalea","Barbi", "Rowena", "Fiona", "Katie"),each=2)
 Adversity<-rep(c("Not_Advers","Advers"),times=c(6,10))
 Conditions<-rep(c("Social","Not_Social"),8)
 MeanFreq<-runif(16,1,70)
-A<-data.frame(Names,Adversity,Conditions)
+A<-data.frame(Names,Adversity,Conditions,MeanFreq)
 
 #ggplot
 ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line()+geom_text(label=Names)+theme_classic()
@@ -35,7 +35,7 @@ ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line(
 # Cao, J., Kleiman-Weiner, M., & Banaji, M. R. (2019). People Make the Same Bayesian Judgment They Criticize in Others. Psychological Science, 30, 20-31.nm
 
 
-```{r}
+```{r,eval=FALSE}
 #Dataframe
 Aver_Freq_SC<-rnorm(7,35,70)
 Aver_Freq_NonSC<-rnorm(7,35,70)
@@ -47,7 +47,7 @@ ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
 ```
 
 ##Problem 3
-```{r}
+```{r,eval=FALSE}
 #Create a dataframe
 
 X_Axis<-as.factor(c("Doctor Study 1 N=199", "Butcher Study 2 n=199", "Firefighter Study 2 n=200", "Construction Worker Study 2 n=2"))
@@ -59,19 +59,19 @@ Stacked_factors<-as.factor(c("Man More Likely", "Equal Likely", "Women More Like
 "Women More Likely"<-c(0,5,1,3)
 "NnAa"<-c(0,0,0,0)
 
-"Percentage of Participants"<-sample(0:100,replace = T)
+Percentage_of_Participants<-sample(0:100,replace = T)
 
-Data_C<-data.frame(X_Axis,Stacked_factors,"Percentage of Participants")
+Data_C<-data.frame(X_Axis,Stacked_factors,Percentage_of_Participants)
 
 
 # basic bar graph
 ggplot(Data_C)+ geom_bar(aes(x=X_Axis, fill=Stacked_factors))
 
 
-ggplot(Data_C, aes(x=X_Axis,y="Percentage of Participants"))+
+ggplot(Data_C, aes(x=X_Axis,y=Percentage_of_Participants))+
   geom_bar(stat="identity")+
-  geom_errorbar(aes(ymin="Percentage of Participants"-Stacked_factors,
-ymax="Percentage of Participants"+Stacked_factors), width=.2)+
+  geom_errorbar(aes(ymin=Percentage_of_Participants-Stacked_factors,
+ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
   coord_cartesian(ylim=c(0,100))+
   xlab("X_Axis")+
   ylab("Stacked_factors")+
@@ -82,7 +82,7 @@ ymax="Percentage of Participants"+Stacked_factors), width=.2)+
 
 ##Problem 4
 
-```{r}
+```{r,eval=FALSE}
 #Create a dataframe
 
 Person_X_Answer<- as.factor(c("Equal Likely n=200","Man More Likely n=202", "NaNa"))
