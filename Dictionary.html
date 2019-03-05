@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Dictionary</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MyLabJournal</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Journal.html">Journal</a>
+</li>
+<li>
+  <a href="Dictionary.html">Dictionary</a>
+</li>
+<li>
+  <a href="ggplot2 PLOTS.html">ggplot2 PLOTS</a>
+</li>
+<li>
+  <a href="Links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Dictionary</h1>
+
+</div>
+
+
+<div id="list-of-functions" class="section level3">
+<h3>List of functions</h3>
+<p>General bits</p>
+<ol style="list-style-type: decimal">
+<li>help(topic) – search r studio for tips on a function for topic by clicking “Help” on the bottom right panel and performing a search under “Topic”; similar to “?topic”.</li>
+<li>?topic - search r studio for tips on a function for topic by typing “?[insert topic name here]” in the Console; similar to “help(topic)”.</li>
+<li>ls() – shows a list of characters used by the user.</li>
+<li>dir() – shows a list of files; see list.files().</li>
+<li>list.files() – shows a list of files; dir(). Input and output</li>
+<li>save() – saves a data.</li>
+<li>load() – loads data that was previously saved using “save()”.</li>
+<li>data() – loads data.</li>
+<li>library() – downloads packages unto r studio.</li>
+<li>read.table() – turns data from a file into a table.</li>
+<li>read.csv() – turns data from a csv into a table.</li>
+<li>scan() – turns data from a file into a list.</li>
+<li>print() – returns argument.</li>
+<li>cat() – turns data into a string and concatenates them, before returning them to the argument.</li>
+<li>write.table() – turns data into a matrix before returning it to argument and turning it into a file. Data Creation</li>
+<li>c() – concatenates variables into a vector.</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10) – to include numbers “from” to “to” (e.g. to include numbers 1 to 10).</li>
+<li>seq() – a sequence of number “from” one number “to” another.</li>
+<li>rep() – repeats a value.</li>
+<li>data.frame() – a matrix</li>
+<li>list() – holds list of variables.</li>
+<li>matrix() – a dataframe.</li>
+<li>factor() – categorizes a vector as a factor.</li>
+<li>rbind() – concatenates vectors into a row in a dataframe.</li>
+<li>cbind() – concatenates vectors into column in a dataframe.</li>
+</ol>
+</div>
+<div id="slicing-and-extracting-data" class="section level3">
+<h3>Slicing and extracting data</h3>
+<p>Indexing vectors</p>
+<ol style="list-style-type: decimal">
+<li>x[n] nth element</li>
+<li>x[-n] all but nth element</li>
+<li>x[1:n] first n elements</li>
+<li>x[-(1:n)] elements from n+1 to the end</li>
+<li>x[c(1,4,2)] specific elements</li>
+<li>x[“name”] elements named “name”</li>
+<li>x[x&gt;3] all elements greater than 3</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set</li>
+</ol>
+</div>
+<div id="indexing-lists" class="section level3">
+<h3>Indexing lists</h3>
+<ol style="list-style-type: decimal">
+<li>x[n] list with elements n</li>
+<li>x[[n]] nt h element of the list</li>
+<li>x[[“name”]] element of the list named “name”</li>
+<li>x$name id.</li>
+</ol>
+</div>
+<div id="indexing-matrices" class="section level3">
+<h3>Indexing matrices</h3>
+<ol style="list-style-type: decimal">
+<li>x[i,j] element at row i, column j</li>
+<li>x[i,] row i</li>
+<li>x[,j] column j</li>
+<li>x[,c(1,3)] columns 1 and 3</li>
+<li>x[“name”,] row named “name”</li>
+</ol>
+</div>
+<div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level3">
+<h3>Indexing data frames (matrix indexing plus the following)</h3>
+<ol style="list-style-type: decimal">
+<li>x[[“name”]] column named “name”</li>
+<li>x$nameid.</li>
+</ol>
+</div>
+<div id="variable-conversion" class="section level3">
+<h3>Variable conversion</h3>
+<ol style="list-style-type: decimal">
+<li>as.data.frame(x)</li>
+<li>as.numeric(x)</li>
+<li>as.logical(x)</li>
+<li>as.character(x)</li>
+</ol>
+</div>
+<div id="variable-information" class="section level3">
+<h3>Variable information</h3>
+<ol style="list-style-type: decimal">
+<li>is.na(x)</li>
+<li>is.null(x)</li>
+<li>is.data.frame(x)</li>
+<li>is.numeric(x)</li>
+<li>is.character(x)</li>
+<li>length(x)</li>
+<li>dim(x)</li>
+<li>dimnames(x)</li>
+<li>nrow(x)</li>
+<li>ncol(x)</li>
+<li>class()</li>
+<li>attributes()</li>
+</ol>
+</div>
+<div id="data-selection-and-manipulation" class="section level3">
+<h3>Data selection and manipulation</h3>
+<ol style="list-style-type: decimal">
+<li>which.max()</li>
+<li>which.min()</li>
+<li>which()</li>
+<li>sort()</li>
+<li>unique()</li>
+<li>table()</li>
+<li>sample()</li>
+</ol>
+</div>
+<div id="math" class="section level3">
+<h3>Math</h3>
+<ol style="list-style-type: decimal">
+<li>max()</li>
+<li>min()</li>
+<li>range()</li>
+<li>sum()</li>
+<li>mean()</li>
+<li>median()</li>
+<li>var()</li>
+<li>sd()</li>
+<li>cor()</li>
+<li>round()</li>
+<li>abs()</li>
+</ol>
+</div>
+<div id="matrices" class="section level3">
+<h3>Matrices</h3>
+<ol style="list-style-type: decimal">
+<li>t()</li>
+<li>diag()</li>
+<li>rowSums()</li>
+<li>colSums()</li>
+<li>rowMeans()</li>
+<li>colMeans()</li>
+</ol>
+</div>
+<div id="advanced-data-processing" class="section level3">
+<h3>Advanced Data processing</h3>
+<ol style="list-style-type: decimal">
+<li>apply()</li>
+<li>aggregate()</li>
+</ol>
+</div>
+<div id="strings" class="section level3">
+<h3>Strings</h3>
+<ol style="list-style-type: decimal">
+<li>paste()</li>
+<li>strsplit()</li>
+<li>tolower()</li>
+<li>toupper</li>
+</ol>
+</div>
+<div id="plotting" class="section level3">
+<h3>Plotting</h3>
+<ol style="list-style-type: decimal">
+<li>hist()</li>
+<li>plot()</li>
+</ol>
+</div>
+<div id="distributions" class="section level3">
+<h3>Distributions</h3>
+<ol style="list-style-type: decimal">
+<li>rnorm()</li>
+<li>runif()</li>
+</ol>
+</div>
+<div id="programming" class="section level3">
+<h3>Programming</h3>
+<ol style="list-style-type: decimal">
+<li>show that you can define a function</li>
+<li>show that you can write a for loop</li>
+<li>show that you can write a while loop</li>
+<li>show that you can write an if else statement</li>
+<li>Explain what return() does inside a function, show you can use it</li>
+<li>Explain what break() does, show you can use it</li>
+</ol>
+</div>
+<div id="installing-some-packages" class="section level3">
+<h3>Installing some packages</h3>
+<p>Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again. 1. ggplot2 2. dplyr 3. shiny 4. data.table 5. reshape2 6. stringr</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
