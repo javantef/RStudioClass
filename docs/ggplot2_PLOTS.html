@@ -410,7 +410,9 @@ div.tocify {
 
 <div id="problem-1" class="section level2">
 <h2>Problem 1</h2>
-<p>#Calcutt, S. E., Proctor, D., &amp; Berman, S. M. (2019). Chimpanzees (Pan troglodytes) Are More Averse to Social Than Nonsocial Risk. Psychological Science, 30, 105-115.</p>
+</div>
+<div id="calcutt-s.-e.-proctor-d.-berman-s.-m.-2019.-chimpanzees-pan-troglodytes-are-more-averse-to-social-than-nonsocial-risk.-psychological-science-30-105-115." class="section level1">
+<h1>Calcutt, S. E., Proctor, D., &amp; Berman, S. M. (2019). Chimpanzees (Pan troglodytes) Are More Averse to Social Than Nonsocial Risk. Psychological Science, 30, 105-115.</h1>
 <pre class="r"><code>#Dataframe
 Names&lt;-rep(c(&quot;Dara&quot;,&quot;Rita&quot;,&quot;Liza&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;, &quot;Rowena&quot;, &quot;Fiona&quot;, &quot;Katie&quot;),each=2)
 Adversity&lt;-rep(c(&quot;Not_Advers&quot;,&quot;Advers&quot;),times=c(6,10))
@@ -420,9 +422,9 @@ A&lt;-data.frame(Names,Adversity,Conditions,MeanFreq)
 
 #ggplot
 ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line()+geom_text(label=Names)+theme_classic()</code></pre>
-</div>
 <div id="problem-2" class="section level2">
 <h2>Problem 2</h2>
+</div>
 </div>
 <div id="cao-j.-kleiman-weiner-m.-banaji-m.-r.-2019.-people-make-the-same-bayesian-judgment-they-criticize-in-others.-psychological-science-30-20-31.nm" class="section level1">
 <h1>Cao, J., Kleiman-Weiner, M., &amp; Banaji, M. R. (2019). People Make the Same Bayesian Judgment They Criticize in Others. Psychological Science, 30, 20-31.nm</h1>
@@ -434,7 +436,8 @@ B&lt;-data.frame(Aver_Freq_SC,Aver_Freq_NonSC)
 #ggplot
 ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
   geom_point()+geom_smooth(method=lm)</code></pre>
-<p>##Problem 3</p>
+<div id="problem-3" class="section level2">
+<h2>Problem 3</h2>
 <pre class="r"><code>#Create a dataframe
 
 X_Axis&lt;-as.factor(c(&quot;Doctor Study 1 N=199&quot;, &quot;Butcher Study 2 n=199&quot;, &quot;Firefighter Study 2 n=200&quot;, &quot;Construction Worker Study 2 n=2&quot;))
@@ -464,7 +467,9 @@ ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
   ylab(&quot;Stacked_factors&quot;)+
   theme_classic(base_size=12)+
   theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p>##Problem 4</p>
+</div>
+<div id="problem-4" class="section level2">
+<h2>Problem 4</h2>
 <pre class="r"><code>#Create a dataframe
 
 Person_X_Answer&lt;- as.factor(c(&quot;Equal Likely n=200&quot;,&quot;Man More Likely n=202&quot;, &quot;NaNa&quot;))
@@ -487,6 +492,7 @@ ggplot(Data_D, aes(x=Person_X_Answer,y=Money_Transferred_to_Person_X))+
   ggtitle(&quot;Bar graph with Error Bars&quot;)+
   theme_classic(base_size=12)+
   theme(plot.title = element_text(hjust = 0.5))</code></pre>
+</div>
 </div>
 
 
