@@ -8,8 +8,8 @@ navbar:
       href: Journal.html
     - text: "Dictionary"
       href: Dictionary.html
-    - text: "ggplot2 PLOTS"
-      href: ggplot2 PLOTS.html
+    - text: "Plots"
+      href: Plots.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
