@@ -10,8 +10,8 @@ navbar:
       href: Dictionary.html
     - text: "Plots"
       href: Plots.html
-    - text: "DataWrangling"
-      href: DataWrangling.html
+    - text: "DataWrangleFlanker_student"
+      href: DataWrangleFlanker_student.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"
