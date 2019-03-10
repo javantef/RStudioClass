@@ -411,8 +411,8 @@ div.tocify {
 </div>
 
 
-<div id="problem-1" class="section level3">
-<h3>Problem 1</h3>
+<div id="problem-1" class="section level1">
+<h1>Problem 1</h1>
 <pre class="r"><code>#Dataframe
 Names&lt;-rep(c(&quot;Dara&quot;,&quot;Rita&quot;,&quot;Liza&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;, &quot;Rowena&quot;, &quot;Fiona&quot;, &quot;Katie&quot;),each=2)
 Adversity&lt;-rep(c(&quot;Not_Advers&quot;,&quot;Advers&quot;),times=c(6,10))
@@ -422,10 +422,10 @@ A&lt;-data.frame(Names,Adversity,Conditions,MeanFreq)
 
 #ggplot
 ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line()+geom_text(label=Names)+theme_classic()</code></pre>
-<p><img src="Plots_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## Error in ggplot(A, aes(x = Conditions, y = MeanFreq, group = Names, linetype = Adversity)): could not find function &quot;ggplot&quot;</code></pre>
 </div>
-<div id="problem-2" class="section level3">
-<h3>Problem 2</h3>
+<div id="problem-2" class="section level1">
+<h1>Problem 2</h1>
 <pre class="r"><code>#Dataframe
 Aver_Freq_SC&lt;-rnorm(7,35,70)
 Aver_Freq_NonSC&lt;-rnorm(7,35,70)
@@ -435,8 +435,8 @@ B&lt;-data.frame(Aver_Freq_SC,Aver_Freq_NonSC)
 ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
   geom_point()+geom_smooth(method=lm)</code></pre>
 </div>
-<div id="problem-3" class="section level3">
-<h3>Problem 3</h3>
+<div id="problem-3" class="section level1">
+<h1>Problem 3</h1>
 <pre class="r"><code>#Create a dataframe
 
 X_Axis&lt;-as.factor(c(&quot;Doctor Study 1 N=199&quot;, &quot;Butcher Study 2 n=199&quot;, &quot;Firefighter Study 2 n=200&quot;, &quot;Construction Worker Study 2 n=2&quot;))
@@ -467,8 +467,8 @@ ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
   theme_classic(base_size=12)+
   theme(plot.title = element_text(hjust = 0.5))</code></pre>
 </div>
-<div id="problem-4" class="section level3">
-<h3>Problem 4</h3>
+<div id="problem-4" class="section level1">
+<h1>Problem 4</h1>
 <pre class="r"><code>#Create a dataframe
 
 Person_X_Answer&lt;- as.factor(c(&quot;Equal Likely n=200&quot;,&quot;Man More Likely n=202&quot;, &quot;NaNa&quot;))
@@ -483,7 +483,8 @@ Data_D&lt;-data.frame(Person_X_Answer,Money_Transferred_to_Person_X)
 ggplot(Data_D, aes(x=Person_X_Answer,y=Money_Transferred_to_Person_X))+
   geom_bar(stat=&quot;identity&quot;)+
   geom_errorbar(aes(ymin=Person_X_Answer-Money_Transferred_to_Person_X,
-                    ymax=Person_X_Answer+Money_Transferred_to_Person_X),
+                    ymax=Person_X_Answer+Mone
+y_Transferred_to_Person_X),
                 width=.2)+
   coord_cartesian(ylim=c(0,100))+
   xlab(Person_X_Answer)+

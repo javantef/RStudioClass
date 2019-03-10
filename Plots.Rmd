@@ -15,7 +15,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, messages=TRUE, error=TRUE)
 ```
 
-###Problem 1
+#Problem 1
 
 
 ```{r}
@@ -31,7 +31,7 @@ ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line(
 
 ```
 
-###Problem 2
+#Problem 2
 
 
 ```{r,eval=FALSE}
@@ -45,7 +45,7 @@ ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
   geom_point()+geom_smooth(method=lm)
 ```
 
-###Problem 3
+#Problem 3
 ```{r,eval=FALSE}
 #Create a dataframe
 
@@ -79,7 +79,7 @@ ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
 
 ```
 
-###Problem 4
+#Problem 4
 
 ```{r,eval=FALSE}
 #Create a dataframe
@@ -96,7 +96,8 @@ Data_D<-data.frame(Person_X_Answer,Money_Transferred_to_Person_X)
 ggplot(Data_D, aes(x=Person_X_Answer,y=Money_Transferred_to_Person_X))+
   geom_bar(stat="identity")+
   geom_errorbar(aes(ymin=Person_X_Answer-Money_Transferred_to_Person_X,
-                    ymax=Person_X_Answer+Money_Transferred_to_Person_X),
+                    ymax=Person_X_Answer+Mone
+y_Transferred_to_Person_X),
                 width=.2)+
   coord_cartesian(ylim=c(0,100))+
   xlab(Person_X_Answer)+
