@@ -80,10 +80,9 @@ Check how many trials each subject completed in the congruent and incongruent co
 ```{r}
 #TC=Trial Checks
 
-TC<-CRT%>%group_by(AC)%>%
-  summarise(MAC=mean(AC),
-            CMRT=mean(CRT),
-            TC=length(trial))
+TC<-CRT%>%mutate(MAC=mean(AC),
+                 MRT=mean(CRT), 
+                 TC=length(trial))
 
 #MAC=Mean Accuracy
 #CMRT=Calculated Mean Reaction Time
@@ -97,7 +96,7 @@ It is common to exclude Reaction times that are very slow. There are many method
 ```{r}
 #ERT=Excluded Reaction times
 
-ERT<-CRT%>%mutate(CRT=(as.numeric(CRT<=2.0000)))
+ERT<-CRT%>%filter=(as.numeric(CRT<=2000))
 
 #CRT = Calculate Reaction Time
 
@@ -146,7 +145,7 @@ OMSRTs <- CRT%>%group_by(Trial_Con=as.numeric(AC=="1"))%>%
 **tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
 ```{r}
-Flanker_Effect <- filter(OMSRTs)%>%group_by(CMRT)
+Flanker_Effect <- OMSRTs%>%mutate(Flanker_Effect=CMRT[1,2]-CMRT[2,2])
  
 
 
