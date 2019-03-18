@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, messages=TRUE, error=TRUE) 
 ```
 
 ## Flanker task
@@ -78,13 +78,24 @@ CRT<-AC%>%mutate(CRT=response_time - stimulus_onset)
 Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
 
 ```{r}
+
 #TC=Trial Checks
 
-TC<-CRT%>%mutate(MAC=mean(AC),
-                 MRT=mean(CRT), 
-                 TC=length(trial))
 
-#MAC=Mean Accuracy
+
+TC<-all_data%>%group_by(AC=as.numeric(congruency=="C"),subject)%>%
+            summarise(MAC=mean(AC),
+            CMRT=mean(response_time - stimulus_onset), 
+            TC=length(trial))
+
+
+
+
+
+#1=Congruency & 0=Incongruency
+
+#AC=Accuracy Column
+#MAC=Mean Accuracy Column
 #CMRT=Calculated Mean Reaction Time
 
 ```
@@ -96,9 +107,9 @@ It is common to exclude Reaction times that are very slow. There are many method
 ```{r}
 #ERT=Excluded Reaction times
 
-ERT<-CRT%>%filter=(as.numeric(CRT<=2000))
+ERT<-all_data%>%filter(response_time,stimulus_onset)%>%
+                group_by(ERT=response_time-stimulus_onset, ERT<2000)
 
-#CRT = Calculate Reaction Time
 
 ```
 
@@ -110,31 +121,50 @@ ERT<-CRT%>%filter=(as.numeric(CRT<=2000))
 
 ```{r}
 
-CMRT <- CRT%>%group_by(Trial_Con=as.numeric(AC=="1"))%>%summarise(mean(CRT))
+#RTA = Reaction Time Analysis
 
 
-#CMRT = Calculated Mean Reaction Time
-#Trial_Con = Trial Congruency
-#CRT = Calculate Reaction Time
+RTA <- TC%>%filter(as.numeric(AC)=="1")%>%group_by(subject)%>%summarise(CMRT)
+
+
+#TC=Trial Checks
 #AC=Accuracy Column
+#Trial_Con = Trial Congruency
+#CMRT = Calculated Mean Reaction Time
 #1=Congruency & 0=Incongruency
 
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
-```{r}
+```{r,eval=FALSE}
 
-OMSRTs <- CRT%>%group_by(Trial_Con=as.numeric(AC=="1"))%>%
-  summarise(CMRT=mean(CRT), 
-            SEM_CRT=(sd(AC=="1")/sqrt(length(AC=="1"))))
-
+library(ggplot2)
+library(tidyverse)
 
 #OMSRTs = Overall Mean & SEM Reaction Times
+
+
+OMSRTs <- TC%>%group_by(as.numeric(AC))%>%
+  summarise(OM=mean(CMRT),SEM_CRT=(sd(as.numeric(AC))/sqrt(length(as.numeric(AC)))))
+
+
+
+ggplot(OMSRTs, aes(x=as.numeric(AC),y=OM))+
+  geom_bar(stat="identity")+
+  geom_errorbar(aes(ymin=OM-SEM_CRT,
+                    ymax=OM+SEM_CRT),
+                width=.2)+
+  coord_cartesian(ylim=c(0,10.0))+
+  xlab("Congruency")+
+  ylab("Calculated Mean Reaction Time")+
+  theme_classic(base_size=12)
+
+#TC=Trial Checks
+#OM=Overall Mean
 #CMRT = Calculated Mean Reaction Time
-#SEM_CRT = Standard Errors of Mean
+#SEM_CRT = Standard Errors of Mean for Calculate Reaction Time
 #Trial_Con = Trial Congruency
-#CRT = Calculate Reaction Time
 #AC=Accuracy Column
 #1=Congruency & 0=Incongruency
   
@@ -145,10 +175,10 @@ OMSRTs <- CRT%>%group_by(Trial_Con=as.numeric(AC=="1"))%>%
 **tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
 ```{r}
-Flanker_Effect <- OMSRTs%>%mutate(Flanker_Effect=CMRT[1,2]-CMRT[2,2])
+Flanker_Effect <- OMSRTs%>%filter(OM,SEM_CRT)
  
 
-
+#OM=Overall Mean
 #DCMRT = Difference between Calculated Mean Reaction Times
 #OMSRTs = Overall Mean & SEM Reaction Times
 #CMRT = Calculated Mean Reaction Time
