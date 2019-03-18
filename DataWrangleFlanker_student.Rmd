@@ -83,7 +83,7 @@ Check how many trials each subject completed in the congruent and incongruent co
 
 
 
-TC<-all_data%>%group_by(AC=as.numeric(congruency=="C"),subject)%>%
+TC<-all_data%>%group_by(CRT=response_time - stimulus_onset,AC=as.numeric(congruency=="C"),subject)%>%
             summarise(MAC=mean(AC),
             CMRT=mean(response_time - stimulus_onset), 
             TC=length(trial))
