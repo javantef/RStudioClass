@@ -11,7 +11,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+knitr::opts_chunk$set(echo = TRUE, messages=TRUE, error=TRUE)
 ```
 ## Null distribution of mean differences
 
@@ -33,9 +33,10 @@ W <- replicate(10000, mean(rnorm(10, mean = 0, sd = 1)) - mean(rnorm(10, mean = 
 
 hist(W)
 
-t.test(W, mu=2,alternative = "greater")
+sort(W)[9500]
 
-t.test(W, mu=2)
+sort(W)[2500]
+
 ```
 ## t-distribution
 
@@ -51,36 +52,28 @@ Show that the properties of a simulated t-distribution are the same as the prope
 
 ```{r}
 
-c(.5, 1, 1.5, 2, 2.5)
+#real
 a<-c(.5, 1, 1.5, 2, 2.5)
 
-qt(c(0.005, 0.01, 0.015, 0.02, 0.025),df=9)
+
+# probability
+pt(c(0.005, 0.01, 0.015, 0.02, 0.025),df=9)
 
 
-M <- mean(a)
-Std <- sd(a)
-SEM <- Std/sqrt(5) 
-t_value <- (M)/SEM
+# sim 
+b <- replicate(10000,t.test(rnorm(10, 0, 1),mu=0)$statistic)
 
+#real sim - sim sim
+L <- a - b
 
-for (i in 1:10000) {
-    N[i] <- mean(rnorm(i, 1.5, 0.7905694))/(0.7905694/sqrt(5))
-}
+#simulation repeated fewer times
+c <- replicate(100,t.test(rnorm(10, 0, 1),mu=0)$statistic)
+j <- a - b
 
+#simulation repeated more times
+c <- replicate(100000,t.test(rnorm(10, 0, 1),mu=0)$statistic)
+s <- a - b
 
-
-for (i in 1:10000) {
-    M[i] <- a + mean(rnorm(i, 1.5, 0.7905694))/(0.7905694/sqrt(5))
-}
-print(M)
-
-
-
-
-# M = mean = 1.5
-# Std = sd = 0.7905694
-# SEM = 0.3535534
-# t_value = 4.242641
 
 ```
 ## Correlation
@@ -100,16 +93,21 @@ E <- rnorm(10,0,1)
 cor(D,E)
 
 for (i in 1:10000) {
+  P <- 0
     P[i] <- cor(rnorm(10,0,1),rnorm(10,0,1))
 }
 P
+sort(abs(P))[9500]
 
 
-cor.test(D,E)
+# sample-size is increased to 100
+for (i in 1:10000) {
+  P <- 0
+    P[i] <- cor(rnorm(100,0,1),rnorm(100,0,1))
+}
+P
+sort(abs(P))[9500]
 
-K <- rnorm(100,0,1)
-L <- rnorm(100,0,1)
-cor.test(K,L)
 
 ```
 ## F-values
@@ -118,6 +116,20 @@ There are three groups of different subjects. The means for each subject in each
 A <- c(1,2,3,4)
 B <- c(3,4,5,6)
 C <- c(5,6,7,8)
+```{r}
+
+A <- c(1,2,3,4)
+B <- c(3,4,5,6)
+C <- c(5,6,7,8)
+
+S <- rep(c("A","B","C"), each=4)
+G <- c(A,B,C)
+J <- data.frame(S,G)
+J
+
+summary(aov(G ~ S,J))
+
+```
 
 ## F simulation
 Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from normal distribution with mean =0 and sd =1.
@@ -129,13 +141,23 @@ Assume that there are three groups of different subjects. Each group has four su
 3). Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.
 ```{r}
 
-A <- c(1,2,3,4)
-B <- c(3,4,5,6)
-C <- c(5,6,7,8)
+F_Sim <- function(){
+H <- rnorm(4,0,1)
+I <- rnorm(4,0,1)
+E <- rnorm(4,0,1)
 
-J <- data.frame(A,B,C)
+P <- rep(c("H","I","E"), each=4)
+U <- c(H,I,E)
+V <- data.frame(P,U)
+R <- summary(aov(U ~ P,V))
+return(R[[1]]$'F-Value'[1])
+}
 
+replicate(10000,F_Sim())
 
+sort(replicate(10000,F_Sim()))[9500]
+
+qt(.95,2,9)
 
 ```
 
