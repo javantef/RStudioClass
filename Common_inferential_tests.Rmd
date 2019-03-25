@@ -27,20 +27,15 @@ If you take two random samples from the same distribution they can be different 
 
 5). Assume an alpha criteria of p<.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?
 
-```{r, eval=FALSE}
-X <- rnorm(10, mean = 0, sd = 1)
-Y <- rnorm(10, mean = 0, sd = 1)
+```{r}
 
-for (i in 1:10000){
-  W<-0
-W <- W + W[i] + rep(mean(X)-mean(Y),10000)
-}
-W
+W <- replicate(10000, mean(rnorm(10, mean = 0, sd = 1)) - mean(rnorm(10, mean = 0, sd = 1)))
 
+hist(W)
 
-t.test(W[i], mu=2,alternative = "greater")
+t.test(W, mu=2,alternative = "greater")
 
-t.test(W[i], mu=2)
+t.test(W, mu=2)
 ```
 ## t-distribution
 
@@ -56,7 +51,36 @@ Show that the properties of a simulated t-distribution are the same as the prope
 
 ```{r}
 
-# your code here
+c(.5, 1, 1.5, 2, 2.5)
+a<-c(.5, 1, 1.5, 2, 2.5)
+
+qt(c(0.005, 0.01, 0.015, 0.02, 0.025),df=9)
+
+
+M <- mean(a)
+Std <- sd(a)
+SEM <- Std/sqrt(5) 
+t_value <- (M)/SEM
+
+
+for (i in 1:10000) {
+    N[i] <- mean(rnorm(i, 1.5, 0.7905694))/(0.7905694/sqrt(5))
+}
+
+
+
+for (i in 1:10000) {
+    M[i] <- a + mean(rnorm(i, 1.5, 0.7905694))/(0.7905694/sqrt(5))
+}
+print(M)
+
+
+
+
+# M = mean = 1.5
+# Std = sd = 0.7905694
+# SEM = 0.3535534
+# t_value = 4.242641
 
 ```
 ## Correlation
@@ -71,7 +95,21 @@ Sample A and Sample B both have 10 observations randomly sampled from the same n
 
 ```{r}
 
-# your code here
+D <- rnorm(10,0,1)
+E <- rnorm(10,0,1)
+cor(D,E)
+
+for (i in 1:10000) {
+    P[i] <- cor(rnorm(10,0,1),rnorm(10,0,1))
+}
+P
+
+
+cor.test(D,E)
+
+K <- rnorm(100,0,1)
+L <- rnorm(100,0,1)
+cor.test(K,L)
 
 ```
 ## F-values
@@ -89,10 +127,15 @@ Assume that there are three groups of different subjects. Each group has four su
 2). Using the simulated F-distribution, what is the critical value of F for alpha set at, p<.05
 
 3). Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.
-
 ```{r}
 
-# your code here
+A <- c(1,2,3,4)
+B <- c(3,4,5,6)
+C <- c(5,6,7,8)
+
+J <- data.frame(A,B,C)
+
+
 
 ```
 
