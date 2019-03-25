@@ -92,10 +92,7 @@ D <- rnorm(10,0,1)
 E <- rnorm(10,0,1)
 cor(D,E)
 
-for (i in 1:10000) {
-  P <- 0
-    P[i] <- cor(rnorm(10,0,1),rnorm(10,0,1))
-}
+P <- replicate(10000,cor(rnorm(10,0,1),rnorm(10,0,1)))
 P
 sort(abs(P))[9500]
 
