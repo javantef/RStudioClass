@@ -12,8 +12,8 @@ navbar:
       href: Plots.html
     - text: "DataWrangleFlanker_student"
       href: DataWrangleFlanker_student.html
-    - text: "Common inferential tests"
-      href: Common inferential tests.html
+    - text: "Common_inferential_tests"
+      href: Common_inferential_tests.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"

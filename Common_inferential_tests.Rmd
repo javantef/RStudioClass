@@ -1,5 +1,5 @@
 ---
-title: "Common Inferential Test"
+title: "Common_inferential_tests"
 output:
   html_document:
     toc: true
