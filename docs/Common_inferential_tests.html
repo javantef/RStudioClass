@@ -11,7 +11,7 @@
 
 
 
-<title>Plots</title>
+<title>Common Inferential Test</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -409,92 +409,62 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Plots</h1>
+<h1 class="title toc-ignore">Common Inferential Test</h1>
 
 </div>
 
 
-<div id="problem-1" class="section level1">
-<h1>Problem 1</h1>
-<pre class="r"><code>#Dataframe
-Names&lt;-rep(c(&quot;Dara&quot;,&quot;Rita&quot;,&quot;Liza&quot;,&quot;Azalea&quot;,&quot;Barbi&quot;, &quot;Rowena&quot;, &quot;Fiona&quot;, &quot;Katie&quot;),each=2)
-Adversity&lt;-rep(c(&quot;Not_Advers&quot;,&quot;Advers&quot;),times=c(6,10))
-Conditions&lt;-rep(c(&quot;Social&quot;,&quot;Not_Social&quot;),8)
-MeanFreq&lt;-runif(16,1,70)
-A&lt;-data.frame(Names,Adversity,Conditions,MeanFreq)
+<div id="null-distribution-of-mean-differences" class="section level2">
+<h2>Null distribution of mean differences</h2>
+<p>If you take two random samples from the same distribution they can be different because of random sampling. This question asks you to construct a null-distribution using simulation.</p>
+<p>1). Assume your samples come from a normal distribution with mean =0, sd =1. (use rnorm)</p>
+<p>2). Assume sample size for each sample is n =10 (e.g., rnorm(10,0,1))</p>
+<p>3). Create the null-distribution: Run a simulation 10,000 times that finds the difference between means of sample A and B. You should have a vector of 10,000 difference scores</p>
+<p>4). Assume an alpha criteria of p&lt;.05 for a directional test. What is the critical value for a positive mean difference? In other words, how large must a positive mean difference be in order to occur less than 5% of the time under the null?</p>
+<p>5). Assume an alpha criteria of p&lt;.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?</p>
+<pre class="r"><code>X &lt;- rnorm(10, mean = 0, sd = 1)
+Y &lt;- rnorm(10, mean = 0, sd = 1)
 
-#ggplot
-ggplot(A,aes(x=Conditions,y=MeanFreq,group=Names,linetype=Adversity))+geom_line()+geom_text(label=Names)+theme_classic()</code></pre>
-<p><img src="Plots_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+for (i in 1:10000){
+  W&lt;-0
+W &lt;- W + W[i] + rep(mean(X)-mean(Y),10000)
+}
+W
+
+
+t.test(W[i], mu=2,alternative = &quot;greater&quot;)
+
+t.test(W[i], mu=2)</code></pre>
 </div>
-<div id="problem-2" class="section level1">
-<h1>Problem 2</h1>
-<pre class="r"><code>#Dataframe
-Aver_Freq_SC&lt;-rnorm(7,35,70)
-Aver_Freq_NonSC&lt;-rnorm(7,35,70)
-B&lt;-data.frame(Aver_Freq_SC,Aver_Freq_NonSC)
-
-#ggplot
-ggplot(B,aes(x=Aver_Freq_NonSC,y=Aver_Freq_SC))+
-  geom_point()+geom_smooth(method=lm)</code></pre>
+<div id="t-distribution" class="section level2">
+<h2>t-distribution</h2>
+<p>Show that the properties of a simulated t-distribution are the same as the properties of the analytic t-distribution. Assume df = 9.</p>
+<p>1). For example, what are the probabilities of t(9) &gt;= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the qt() function.</p>
+<p>2). Create a simulated t-distribution for the null hypothesis with df=9. Here, the model situation involves taking samples of size n=10 from a normal distribution. The t-value is computed for each sample (sample mean - 0)/SEM. The process is repeated 10,000 times, and each t-value is saved. The resulting 10,000 t-values are the simulated t-distribution.</p>
+<p>3). Using the simulated t-distribution, find the probability of t(9) &gt;= .5, 1, 1.5, 2, and 2.5</p>
+<p>4). Compare the two sets of probabilities to show that the difference is small. What happens to the difference if the simulation is repeated fewer times (e.g., 100) vs. more times (e.g., 100,000)</p>
+<pre class="r"><code># your code here</code></pre>
 </div>
-<div id="problem-3" class="section level1">
-<h1>Problem 3</h1>
-<pre class="r"><code>#Create a dataframe
-
-X_Axis&lt;-as.factor(c(&quot;Doctor Study 1 N=199&quot;, &quot;Butcher Study 2 n=199&quot;, &quot;Firefighter Study 2 n=200&quot;, &quot;Construction Worker Study 2 n=2&quot;))
-
-Stacked_factors&lt;-as.factor(c(&quot;Man More Likely&quot;, &quot;Equal Likely&quot;, &quot;Women More Likely&quot;, &quot;NnAa&quot;))
-
-&quot;Man More Likely&quot;&lt;-c(7,35,40,40)
-&quot;Equal Likely&quot;&lt;-c(93,60,59,57)
-&quot;Women More Likely&quot;&lt;-c(0,5,1,3)
-&quot;NnAa&quot;&lt;-c(0,0,0,0)
-
-Percentage_of_Participants&lt;-sample(0:100,replace = T)
-
-Data_C&lt;-data.frame(X_Axis,Stacked_factors,Percentage_of_Participants)
-
-
-# basic bar graph
-ggplot(Data_C)+ geom_bar(aes(x=X_Axis, fill=Stacked_factors))
-
-
-ggplot(Data_C, aes(x=X_Axis,y=Percentage_of_Participants))+
-  geom_bar(stat=&quot;identity&quot;)+
-  geom_errorbar(aes(ymin=Percentage_of_Participants-Stacked_factors,
-ymax=Percentage_of_Participants+Stacked_factors), width=.2)+
-  coord_cartesian(ylim=c(0,100))+
-  xlab(&quot;X_Axis&quot;)+
-  ylab(&quot;Stacked_factors&quot;)+
-  theme_classic(base_size=12)+
-  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<p>Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly.</p>
+<p>1). Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)</p>
+<p>20&gt; Find the critical value such that the absolute value of the correlation occurs less than 5% of the time by chance.</p>
+<p>3). Find the critical value when the sample-size is increased to 100</p>
+<pre class="r"><code># your code here</code></pre>
 </div>
-<div id="problem-4" class="section level1">
-<h1>Problem 4</h1>
-<pre class="r"><code>#Create a dataframe
-
-Person_X_Answer&lt;- as.factor(c(&quot;Equal Likely n=200&quot;,&quot;Man More Likely n=202&quot;, &quot;NaNa&quot;))
-
-Money_Transferred_to_Person_X&lt;-as.factor(c(0.00,0.15,0.30))
-
-Data_D&lt;-data.frame(Person_X_Answer,Money_Transferred_to_Person_X)
-
-
-# basic bar graph
-
-ggplot(Data_D, aes(x=Person_X_Answer,y=Money_Transferred_to_Person_X))+
-  geom_bar(stat=&quot;identity&quot;)+
-  geom_errorbar(aes(ymin=Person_X_Answer-Money_Transferred_to_Person_X,
-                    ymax=Person_X_Answer+Mone
-y_Transferred_to_Person_X),
-                width=.2)+
-  coord_cartesian(ylim=c(0,100))+
-  xlab(Person_X_Answer)+
-  ylab(Money_Transferred_to_Person_X)+
-  ggtitle(&quot;Bar graph with Error Bars&quot;)+
-  theme_classic(base_size=12)+
-  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<div id="f-values" class="section level2">
+<h2>F-values</h2>
+<p>There are three groups of different subjects. The means for each subject in each group are below. Calculate the F-value for the main effect of group.</p>
+<p>A &lt;- c(1,2,3,4) B &lt;- c(3,4,5,6) C &lt;- c(5,6,7,8)</p>
+</div>
+<div id="f-simulation" class="section level2">
+<h2>F simulation</h2>
+<p>Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from normal distribution with mean =0 and sd =1.</p>
+<p>1). Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.</p>
+<p>2). Using the simulated F-distribution, what is the critical value of F for alpha set at, p&lt;.05</p>
+<p>3). Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.</p>
+<pre class="r"><code># your code here</code></pre>
 </div>
 
 

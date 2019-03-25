@@ -294,6 +294,9 @@ $(document).ready(function () {
   <a href="DataWrangleFlanker_student.html">DataWrangleFlanker_student</a>
 </li>
 <li>
+  <a href="Common inferential tests.html">Common inferential tests</a>
+</li>
+<li>
   <a href="Links.html">Links</a>
 </li>
       </ul>
@@ -585,7 +588,7 @@ CRT&lt;-AC%&gt;%mutate(CRT=response_time - stimulus_onset)</code></pre>
 
 
 
-TC&lt;-all_data%&gt;%group_by(AC=as.numeric(congruency==&quot;C&quot;),subject)%&gt;%
+TC&lt;-all_data%&gt;%group_by(CRT=response_time - stimulus_onset,AC=as.numeric(congruency==&quot;C&quot;),subject)%&gt;%
             summarise(MAC=mean(AC),
             CMRT=mean(response_time - stimulus_onset), 
             TC=length(trial))
@@ -618,10 +621,9 @@ ERT&lt;-all_data%&gt;%filter(response_time,stimulus_onset)%&gt;%
 <pre class="r"><code>#RTA = Reaction Time Analysis
 
 
-RTA &lt;- TC%&gt;%filter(as.numeric(AC)==&quot;1&quot;)%&gt;%group_by(subject)%&gt;%summarise(CMRT)
-
-
-#TC=Trial Checks
+RTA &lt;- TC%&gt;%filter(as.numeric(AC)==&quot;1&quot;)%&gt;%group_by(subject)%&gt;%summarise(CMRT)</code></pre>
+<pre><code>## Error: Column `CMRT` must be length 1 (a summary value), not 73</code></pre>
+<pre class="r"><code>#TC=Trial Checks
 #AC=Accuracy Column
 #Trial_Con = Trial Congruency
 #CMRT = Calculated Mean Reaction Time
@@ -661,9 +663,10 @@ ggplot(OMSRTs, aes(x=as.numeric(AC),y=OM))+
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
-<pre class="r"><code>Flanker_Effect &lt;- OMSRTs%&gt;%filter(OM,SEM_CRT)</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;OMSRTs&#39; not found</code></pre>
-<pre class="r"><code>#OM=Overall Mean
+<pre class="r"><code>Flanker_Effect &lt;- OMSRTs%&gt;%filter(OM,SEM_CRT)
+ 
+
+#OM=Overall Mean
 #DCMRT = Difference between Calculated Mean Reaction Times
 #OMSRTs = Overall Mean &amp; SEM Reaction Times
 #CMRT = Calculated Mean Reaction Time</code></pre>
