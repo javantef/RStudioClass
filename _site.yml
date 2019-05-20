@@ -16,4 +16,6 @@ navbar:
       href: Common_inferential_tests.html
     - text: "Links"
       href: Links.html
+    - text: "Leaflet_Package"
+      href: Leaflet_Package.html
 output_dir: "docs"
