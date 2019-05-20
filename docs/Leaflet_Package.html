@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Leaflet Package</title>
 
 <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -272,6 +275,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -322,91 +420,91 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Leaflet Package</h1>
 
 </div>
 
 
-<p>{-}</p>
-<div id="leaflet" class="section level1">
-<h1>Leaflet</h1>
-<p>What is the Leaflet package?</p>
-<p>Introduction This is a very short, simple, basic, bare-bones, tutorial for Leaflet package. What is the Leaflet package? The Leaflet package is package available in RStudio that allows you to create interactive map on both RMarkdown and the ShinyApp. The examples used were inspired by CUNY Brooklyn College and the information used for this tutorial was based on the Github account user, cpsievert (2016), and more information can be located on their website. Also a PowerPoint presentation version of this can be found at Foster (2019).</p>
+<pre><code>This is a very short, simple, basic, bare-bones, tutorial for Leaflet package. What is the Leaflet package? The Leaflet package is package available in RStudio that allows you to create interactive map on both RMarkdown and the ShinyApp. The examples used were inspired by CUNY Brooklyn College and the information used for this tutorial was based on the Github account user, cpsievert (2016), and more information can be located on their website. Also a PowerPoint presentation version of this can be found at Foster (2019).</code></pre>
+<div id="what-is-the-leaflet-package" class="section level1">
+<h1>What is the Leaflet package?</h1>
 <p>This package can be downloaded from the RStudio library, found in under “Tools” tab, then click “Install Packages, and type in “leaflet” and download. After the package has been downloaded, load the Leaflet package by typing in “library(leaflet)” into the “Console”. So how do you use the Leaflet package? Well by typing in “leaflet()”, adding a pipe operator (%&gt;%), and adding “addTiles()”, you can generate a simple world map of the without even entering any data into the functions:</p>
-<div id="example" class="section level2">
-<h2>Example:</h2>
-<pre class="r"><code>library(leaflet)</code></pre>
-<pre><code>## Warning: package &#39;leaflet&#39; was built under R version 3.5.3</code></pre>
-<pre class="r"><code>leaflet() %&gt;% 
+</div>
+<div id="addtiles---world-map-example" class="section level1">
+<h1>addTiles() - World Map Example:</h1>
+<pre class="r"><code>library(leaflet)
+
+leaflet() %&gt;% 
   addTiles()</code></pre>
-<div id="htmlwidget-b3bf21c02f9d495bc6fd" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b3bf21c02f9d495bc6fd">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-257142b32f4cc06e06ec" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-257142b32f4cc06e06ec">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}]},"evals":[],"jsHooks":[]}</script>
 <p>Map features? So how do you add features to the map? This can simply be done by adding another pipe operator and include the function “addMarkers()”. The “addMarkers()” function allows your map to focus on a specific location of your choosing using mapping coordinates. Within the “addMarkers()” function, include the longitude (lng) first and then the latitude (lat). You could find the coordinates for the longitude and longitude of a location by using an online mapping service like GoogleMaps, which was used for the following examples. As a warning, make sure the longitude and latitude in entered into the correct order as, for example, GoogleMaps will give you the latitude first and then the longitude. If the coordinates are entered into the function in the wrong order, the function will not work. You can also include a “popup name” if you desire. The popup name references to whatever name you wish to call the specific location whose coordinates you entered.</p>
 </div>
-<div id="example-1" class="section level2">
-<h2>Example:</h2>
+<div id="addmarkers---map-features-example" class="section level1">
+<h1>addMarkers() - Map Features Example:</h1>
 <pre class="r"><code>leaflet() %&gt;% 
 addTiles() %&gt;% 
 addMarkers(lng = -73.952533, lat =40.631021, popup=&quot;CUNY Brooklyn College&quot;)</code></pre>
-<div id="htmlwidget-cef51b79d6a0cb2cd64e" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cef51b79d6a0cb2cd64e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.952533,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"CUNY Brooklyn College",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.952533,-73.952533]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ca14af82a77602a52ed4" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ca14af82a77602a52ed4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.952533,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"CUNY Brooklyn College",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.952533,-73.952533]}},"evals":[],"jsHooks":[]}</script>
 <pre><code>Want to change how your location icons, also known as markers, look? There are several ways to do this, one being, by replacing the “addMarkers()” function with an “addCircleMarkers()” function. The “addCircleMarkers()” function turns your default location marker into a simply blue circular one. Just like with the “addMarkers” function, you must include the longitude first, then the latitude, and if you desire, a popup name:</code></pre>
 </div>
-<div id="example-2" class="section level2">
-<h2>Example:</h2>
+<div id="addcirclemarkers---change-markers-example" class="section level1">
+<h1>addCircleMarkers() - Change Markers Example:</h1>
 <pre class="r"><code>leaflet() %&gt;% 
 addTiles() %&gt;% 
 addCircleMarkers(lng=-73.952533, lat=40.631021, popup=&quot;CUNY Brooklyn College&quot;)</code></pre>
-<div id="htmlwidget-3bf2849f57f500736cd5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3bf2849f57f500736cd5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[40.631021,-73.952533,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"CUNY Brooklyn College",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.952533,-73.952533]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6e519b5e1e3fabd747a1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6e519b5e1e3fabd747a1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[40.631021,-73.952533,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,"CUNY Brooklyn College",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.952533,-73.952533]}},"evals":[],"jsHooks":[]}</script>
 <pre><code>What about want to map multiple locations? Well this can be done by entering the data.frame into the leaflet function and entering the desired columns from the data.frame as your longitude and latitude:</code></pre>
 </div>
-<div id="example-3" class="section level2">
-<h2>Example:</h2>
+<div id="multiple-locations---data.frame-example" class="section level1">
+<h1>Multiple Locations - data.frame Example:</h1>
 <pre class="r"><code>a &lt;- runif(50,1,50)
 b &lt;- runif(50,1,50)
 long_lat &lt;- data.frame(a,b)
 leaflet(long_lat) %&gt;% addTiles() %&gt;% addCircleMarkers(lng = a, lat = b)</code></pre>
-<div id="htmlwidget-e5c33d1947de184bf056" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5c33d1947de184bf056">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[39.2606154580135,9.8353226587642,36.596089620376,28.3890426608268,42.0376059594564,24.8493941063061,34.5797076558229,25.99582196353,13.5948193105869,32.6096166004427,37.9292950576637,24.0848224603105,22.3246520266403,38.8976439563558,26.1500853602774,11.6380424608942,22.9515519049019,27.7212317378726,38.8403790856246,47.9589566667564,33.7932399734855,34.609600484604,42.0846464659553,26.9115477472078,46.3949646516703,17.3967054835521,31.0219993663486,18.4880502016749,3.22945965919644,48.8188957595266,18.7641011793166,44.3747034433763,40.9828473043162,26.444256801391,3.55151370447129,4.41508467751555,28.824313910678,41.5801620350685,43.6642846709583,43.3246417506598,10.7316979840398,42.5991346852388,4.38755664438941,19.6690438804217,3.33806836442091,2.11813026154414,11.2003791371826,2.76569660333917,25.0975011466071,35.9875887033995],[35.4276615653653,37.5823583034799,7.46707066916861,37.8572891519871,10.1530995590147,31.2194959234912,15.0653401305899,18.4348187746946,38.9274266341235,49.5967848398723,40.5739588250872,48.0239476584829,6.30933011462912,24.2573538008146,41.9998481885996,31.7705818540417,39.8734482931904,9.51321904268116,42.0962997472379,15.9889394356869,12.3048479121644,47.4422059992794,26.2946073003113,31.4862387697212,17.7281441555824,47.9141063799616,1.13038594275713,23.1086580534466,21.8063714979216,41.9511278192513,44.9941175933927,38.3405286525376,12.7989082010463,5.86344806500711,14.7024830696173,43.5929288330954,5.69807152054273,15.3763453732245,47.0460369216744,17.6144539918751,18.0631442249287,9.90246700868011,14.3839285750873,36.1242331061512,18.6457074589562,30.8710969274398,33.4519197572954,1.55666259513237,3.14483971125446,8.6568563724868],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[2.11813026154414,48.8188957595266],"lng":[1.13038594275713,49.5967848398723]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9675b075d2459399d8c7" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9675b075d2459399d8c7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[4.45214137225412,35.7761997589841,5.10249026212841,47.6373855175916,9.21963251428679,44.7712647521403,32.4147003721446,44.0281043068971,18.4793419397902,30.3517653492745,2.13358186464757,38.2002047952265,49.3982601647731,23.4681452235673,42.8626612245571,20.44270829577,4.73735596728511,10.7799896029755,1.03909999318421,39.7511573946103,46.4977981809061,11.5980366282165,14.6893569135573,8.57702819327824,48.284084250452,49.2791148163378,7.25497143040411,11.3930632073898,16.5952620550524,14.5057341817301,27.1237534747925,15.092243183637,21.2820031035226,43.3235934507102,9.83082275884226,24.2989061286207,24.8051077174023,40.8889751732349,6.87906676228158,34.7149623760488,22.4495512624271,30.4966598746832,18.0566231366247,49.7775346552953,8.32970705279149,20.145997882355,49.4637644339819,29.8240259801969,7.58962213108316,30.8748784670606],[8.20122345397249,22.6598388792481,13.6391173249576,35.2825670340098,10.1584604394156,15.6239788269158,37.8449458153918,22.2219168518204,2.28465252486058,46.2656553480774,39.8311106588226,4.96249947044998,34.5240092682652,25.9847917912994,33.0189463454299,23.7083939502481,1.44559918227606,32.7095750570297,9.83312840037979,41.60277205077,22.1031466443092,16.5821100811008,30.7169158672914,19.0093103752006,6.89205048070289,13.1317483179737,33.8176441786345,42.2890025961678,14.6043121740222,31.887052626349,29.8970015570521,23.5147091543768,34.8056040192023,23.5575043803547,41.2040988544468,14.2636118724477,29.2824696011376,30.4497602998745,42.4770611794665,39.2541541627143,32.572047312744,27.8914331933483,29.3575623934157,37.1498352158815,3.53597797360271,5.47149802790955,14.9175203912891,41.8538786440622,19.4259935987648,21.7810751323123],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[1.03909999318421,49.7775346552953],"lng":[1.44559918227606,46.2656553480774]}},"evals":[],"jsHooks":[]}</script>
 <pre><code>What about changing your circle markers colors? Yes, you can. This can simply be done by adding “color = &#39;[insert color]&#39; ” into the add “addCircleMarkers” function. For color choices, use basic colors like black, red, yellow:</code></pre>
 </div>
-<div id="example-4" class="section level2">
-<h2>Example:</h2>
+<div id="circle-markers-colors-example" class="section level1">
+<h1>Circle Markers Colors Example:</h1>
 <pre class="r"><code>a &lt;- runif(50,1,50)
 b &lt;- runif(50,1,50)
 long_lat &lt;- data.frame(a,b)
 leaflet(long_lat) %&gt;% 
   addTiles() %&gt;% 
   addCircleMarkers(a, b, color = &#39;fuchsia&#39;)</code></pre>
-<div id="htmlwidget-592e45b75c9ca9020b28" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-592e45b75c9ca9020b28">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[42.9350104408804,31.1969730360433,30.8061602297239,25.8118259732146,42.2920251947362,42.8723601154052,3.3610304526519,8.92722855485044,29.7500464718323,37.3690628395416,43.6953003669623,16.6517157899216,23.2931080872659,47.81876913202,29.0456432681531,27.5900678699836,46.3693625899032,18.7256575059146,39.4217932694592,4.04611038486473,35.6801843093708,9.34791227383539,32.4053325389978,46.6135855491739,25.3592296859715,24.3838947031181,42.7962912744842,5.58936683391221,29.5994430663995,47.2981029525399,17.9034714722075,26.8204237099271,43.0223636627197,24.0675594976638,44.0461966022849,17.3723000690807,16.4639077417087,42.904872142477,2.43099175696261,48.8396686320193,36.8431771106552,18.2705705850385,44.2305620633997,28.1550096913707,26.5333511393983,33.5532484559808,12.6188491254579,38.5023163845763,20.110375067452,28.9492545372341],[26.4498387025669,38.80171234929,20.2220424341504,40.4041079590097,16.047502970323,12.8273123768158,29.7702460570727,13.8726691210177,14.1055047928821,20.7041891179979,39.3342297624331,43.6058714231476,8.22536683338694,48.8404154570308,46.780611324124,17.2809568820521,6.9596470030956,29.6159040087368,20.8750572637655,27.2230280481745,39.0706633154768,30.0442703473382,21.6201014339458,34.826723590726,2.53485543490387,6.02599306101911,28.246720877476,38.2765736964066,15.4116805747617,15.1821050306316,9.35358564998023,40.4649101090617,2.79353822744451,10.292800911935,41.0293658855371,8.19680022052489,18.4486592067406,26.063351927558,29.2848180709407,39.5594375650398,9.10325479134917,14.4266860154457,35.6189046367072,15.5900962497108,39.8645559861325,44.9407360621262,32.3931573438458,7.56317123910412,14.8874643610325,27.0946048698388],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"fuchsia","weight":5,"opacity":0.5,"fill":true,"fillColor":"fuchsia","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[2.43099175696261,48.8396686320193],"lng":[2.53485543490387,48.8404154570308]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a48c94bc0d1748d5606c" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a48c94bc0d1748d5606c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[15.84154843539,47.3706984599121,8.89030564995483,33.7384112826549,1.10770693863742,40.6374632401858,32.0250468496233,23.8522542198189,26.8269221633673,1.58904068404809,7.87532160733826,9.29615742946044,20.1755851404741,3.15995549922809,40.409635452088,1.98362812772393,36.8244658247568,38.3494170350023,2.34182174503803,37.6504783711862,21.3011497454718,40.7310032525565,31.0443474610802,43.1154685358051,39.150533136446,8.61993330786936,39.6038585081697,9.84386281343177,6.40021111234091,9.00530042150058,9.79434424568899,18.3135399078019,31.3266575718299,5.94220007280819,13.4199083659332,47.243033036124,34.2566925529391,10.9971063658595,21.3987671821378,32.0347358034924,14.1994298147038,36.6444346662611,29.5253182111774,28.5059067595284,40.7536752973683,36.3637932264246,32.0551947655622,23.1545141541865,8.4224991905503,22.9154634552542],[26.9020838642027,6.682383405976,34.8040075653698,28.6255502917338,21.0264528437983,42.0251342977863,37.0852875548881,43.313788869651,9.27663709549233,30.3313698766287,13.2558861598372,22.7921954013873,1.74862306844443,35.4676890517585,24.8632806523237,24.222778338939,17.9709201606456,26.7483133575879,27.0946942227893,6.94364766823128,40.9955343736801,46.8715283276979,49.605634307256,41.7012259392068,48.6349905254319,8.33273534430191,35.9173883274198,9.34806099766865,46.3250778210349,9.83215572871268,47.558392101666,27.4605319097172,38.2923178984784,24.94824683154,26.2089666500688,24.0241783550009,32.6307710825931,49.1338640085887,24.4011500675697,20.5571429913398,35.5935019990429,30.9389044537675,34.1743091440294,47.9458878964651,3.30225532082841,11.7282605445944,12.1453008833341,26.9272040224168,18.8620685779024,46.8641748491209],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"fuchsia","weight":5,"opacity":0.5,"fill":true,"fillColor":"fuchsia","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[1.10770693863742,47.3706984599121],"lng":[1.74862306844443,49.605634307256]}},"evals":[],"jsHooks":[]}</script>
 <p>No fancy colors like burgundy, rainbow, aquamarine, etc. If you do, you will get faded looking markers:</p>
 </div>
-<div id="example-5" class="section level2">
-<h2>Example:</h2>
+<div id="no-fancy-colors-example" class="section level1">
+<h1>No Fancy Colors Example:</h1>
 <pre class="r"><code>a &lt;- runif(50,1,50)
 b &lt;- runif(50,1,50)
 long_lat &lt;- data.frame(a,b)
 leaflet(long_lat) %&gt;% 
  addTiles() %&gt;% 
  addCircleMarkers(a, b, color = &#39;burgundy&#39;)</code></pre>
-<div id="htmlwidget-c72eb98fd67caf8241a5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c72eb98fd67caf8241a5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[3.47732124128379,3.14725129399449,19.869298616657,7.69817735231481,35.4115018583834,40.7897985549644,1.20192525535822,40.2484928136691,5.85930591914803,13.0226143903565,23.4681479616556,44.8504370336886,37.5603921150323,27.9574250362348,49.3161333603784,12.1041206275113,31.119565224275,19.0204620615114,38.3602640177123,43.7938910229132,39.140768953599,39.6751548952889,20.1483107227832,46.6792954260018,46.1403843483422,47.4112428289372,7.22975557600148,19.5357700872701,19.9350415901281,7.82541369483806,25.7749053386506,20.1542997891083,34.5610951236449,45.099630798446,13.7796001168899,8.81536559737287,28.4706523658242,6.30274784145877,34.4946180458646,8.13177804881707,38.8723176086787,24.2139950990677,38.6773125636391,26.6491060727276,35.7170926111285,47.0482964264229,15.2959096350241,21.0283102260437,14.7097147945315,13.3975897741038],[6.25464378157631,1.97837539040484,8.97209820221178,18.7332317428663,32.8376477714628,34.3661145844962,47.382270465605,42.2016153079458,2.18627740209922,32.4366280676331,28.3278735612985,11.9596992437728,36.6019819523208,32.8055769074708,40.4771369399969,38.7606732533313,28.9023534336593,8.28748509124853,21.3408430709969,43.6311505159829,30.6092382490169,36.3355006277561,2.54988725483418,13.9702324462123,18.5976423369721,33.2181974467821,45.5608671805821,21.4318016136531,9.77181877987459,45.9764856072143,28.5456966140773,27.5658549887594,16.1141947028227,30.951360314386,19.0345406958368,35.106574669946,35.1666895484086,27.5793714364991,19.7234580817167,33.6713456870057,33.8557092656847,12.4074880639091,7.17637750157155,25.5875511285849,33.4682954538148,32.7536963277962,45.6497740508057,36.9209202241618,34.0450520124286,16.1705480411183],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"burgundy","weight":5,"opacity":0.5,"fill":true,"fillColor":"burgundy","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[1.20192525535822,49.3161333603784],"lng":[1.97837539040484,47.382270465605]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-12b515f32ae4a4e05b99" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12b515f32ae4a4e05b99">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[38.1355201727711,28.5515453761909,33.7563253170811,29.8396057486534,23.7749364797492,45.8586449464783,32.5092452515382,11.1001071580686,42.9763461402617,27.0590434223413,16.5463790546637,11.3668643564451,1.68841148982756,1.69047050946392,5.06593920104206,43.3578211411368,25.3908291081898,42.2342085193377,41.5832957429811,26.8559581188019,6.42699836706743,29.5239886182826,3.60235408437438,9.55647529428825,22.8093864321709,3.87494234996848,16.2829542011023,18.0453971682582,49.1116601997055,10.0407011911739,1.83354548388161,11.357596075628,29.8101669177413,33.587033705553,2.26656893431209,19.20140389679,29.7102930224501,24.1708289990202,12.8808710623998,18.353197569726,13.9026106535457,25.56770839612,36.0997425713576,9.43470427882858,33.228809889406,24.2143505257554,16.5706257740967,13.2486154970247,8.59779409505427,12.4807499763556],[38.6860963853542,11.3381853336468,15.3268691888079,16.2583253129851,24.2694956483319,11.901700131828,6.05038286838681,42.0269803169649,23.3110274609644,6.3870331835933,23.8848086302169,1.32545115728863,45.1876109854784,26.268163607223,5.24775195377879,30.4987216438167,38.4080479037948,45.6139690845739,3.49798994092271,8.57838732330129,36.3062885676045,22.5575398020446,37.0996230675373,10.6070793224499,46.6945828921162,27.4064872590825,30.2960700306576,2.37786785699427,18.6230908033904,30.9702332159504,16.5068178989459,47.3261782838963,2.89757691486739,22.3300706578884,30.8849544269033,12.2765744687058,20.2973920134827,42.4218949393835,42.5792359930929,12.0930923034903,38.4306434874889,28.6249293731526,35.1789122265764,18.5107494562399,2.87431651190855,8.24020319944248,1.80669727246277,49.9911487756763,6.06003273604438,4.74496763618663],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"burgundy","weight":5,"opacity":0.5,"fill":true,"fillColor":"burgundy","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[1.68841148982756,49.1116601997055],"lng":[1.32545115728863,49.9911487756763]}},"evals":[],"jsHooks":[]}</script>
 <p>Another way to create a location marker is by creating your own using images from the off the internet. You first have to create a variable for it. Under that variable, include the function “makeIcon()” and within that include “iconUrl = [inserting the website link of image here]”, then follow it with “iconWidth = [inserting the width of the icon here]”, and lastly “iconHeight = [inserting the height of the icon here]). Then under the “addmarkers” functions in the Leaflet package, include”icon = [inserting name of the variable for the “makeIcon” “:</p>
 </div>
-<div id="example-6" class="section level2">
-<h2>Example:</h2>
+<div id="makeicon---creating-your-own-with-interent-images-example" class="section level1">
+<h1>makeIcon() - Creating Your Own With Interent Images Example:</h1>
 <pre class="r"><code>CUNYBC &lt;- makeIcon(
   iconUrl = &quot;https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg&quot;,
   iconWidth = 70, iconHeight = 70)
 leaflet() %&gt;% addTiles() %&gt;%
  addMarkers(lng=-73.953558, lat=40.631021, popup=&quot;CUNY Brooklyn College&quot;, icon = CUNYBC)</code></pre>
-<div id="htmlwidget-c0786fc58337728bc5f5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c0786fc58337728bc5f5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.953558,{"iconUrl":{"data":"https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg","index":0},"iconWidth":70,"iconHeight":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"CUNY Brooklyn College",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.953558,-73.953558]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-05c2fc75da65133300ca" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05c2fc75da65133300ca">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.953558,{"iconUrl":{"data":"https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg","index":0},"iconWidth":70,"iconHeight":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"CUNY Brooklyn College",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.953558,-73.953558]}},"evals":[],"jsHooks":[]}</script>
 <p>Is it possible to change the appearance of the popup for the location markers? Yes it is. Within the “addMarkers” function, replace “popup” with “label =”[inserting icon/marker label]“. Follow it with “labelOptions = labelOptions()” function. As a warning, you must write out “labelOptions = labelOptions()”, if not changes to the label will not work. Within the “labelOptions()” function, you can include “noHide = F” for your label to be seen simply by having your mouse hover the icon without having to click it, or “noHide = T” which allows your label to be seen constantly without any prompting. You can also include “direction =”[insert the location the label will appear]”. To change the font specifically, “style = list(”color&quot; = “[inserting basic color choice here]”,“font-family” = “[inserting font choice]”, “font-size” = “[insert the desired font size]px”))):</p>
 </div>
-<div id="example-7" class="section level2">
-<h2>Example:</h2>
+<div id="labeloptions-labeloptions---change-label-example" class="section level1">
+<h1>labelOptions = labelOptions() - Change Label Example:</h1>
 <pre class="r"><code>CUNYBC &lt;- makeIcon(
   iconUrl = &quot;https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg&quot;,
   iconWidth = 70, iconHeight = 70)
@@ -418,9 +516,8 @@ leaflet() %&gt;%
             style = list(&quot;color&quot; = &quot;fuchsia&quot;,
                          &quot;font-family&quot; = &quot;Snap ITC&quot;, 
                          &quot;font-size&quot; = &quot;50px&quot;)))</code></pre>
-<div id="htmlwidget-abafd687ed559c5b0bf9" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-abafd687ed559c5b0bf9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.953558,{"iconUrl":{"data":"https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg","index":0},"iconWidth":70,"iconHeight":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Sup?",{"interactive":false,"permanent":false,"direction":"top","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"style":{"color":"fuchsia","font-family":"Snap ITC","font-size":"50px"},"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.953558,-73.953558]}},"evals":[],"jsHooks":[]}</script>
-</div>
+<div id="htmlwidget-ed374727f7fc20365146" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed374727f7fc20365146">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[40.631021,-73.953558,{"iconUrl":{"data":"https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg","index":0},"iconWidth":70,"iconHeight":70},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Sup?",{"interactive":false,"permanent":false,"direction":"top","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"style":{"color":"fuchsia","font-family":"Snap ITC","font-size":"50px"},"className":"","sticky":true},null]}],"limits":{"lat":[40.631021,40.631021],"lng":[-73.953558,-73.953558]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
@@ -433,6 +530,8 @@ leaflet() %&gt;%
 
 
 
+</div>
+</div>
 
 </div>
 

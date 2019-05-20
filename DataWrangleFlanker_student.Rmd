@@ -107,8 +107,11 @@ It is common to exclude Reaction times that are very slow. There are many method
 ```{r}
 #ERT=Excluded Reaction times
 
-ERT<-all_data%>%filter(response_time,stimulus_onset)%>%
-                group_by(ERT=response_time-stimulus_onset, ERT<2000)
+ERT <- TC %>% filter(CRT<2000)
+
+
+#ERT<-all_data%>%filter(response_time,stimulus_onset)%>%
+               # group_by(ERT=response_time-stimulus_onset, ERT<2000)
 
 
 ```
@@ -124,8 +127,9 @@ ERT<-all_data%>%filter(response_time,stimulus_onset)%>%
 #RTA = Reaction Time Analysis
 
 
-RTA <- TC%>%filter(as.numeric(AC)=="1")%>%group_by(subject)%>%summarise(CMRT)
-
+RTA <- TC%>%group_by(AC)%>%summarise(mean(CMRT))
+                                     
+#AC<-one_subject%>%mutate(AC=as.numeric(congruency=="C"))
 
 #TC=Trial Checks
 #AC=Accuracy Column
